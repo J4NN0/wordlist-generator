@@ -2,15 +2,17 @@
 
 Generates customized wordlist through a variety of methods.
 
-Usage:
-
-   wordlist.c contains the function to generate customized wordlist.
+# Usage:
    
-   more.c contains information about WEP, WPA2, developer and more.
+   - wordlist.c -> contains the function to generate customized wordlist.
    
-   <"name".h> is the header file of <"name".c>; you can write a main.c and #include <"name".h> 
+   - more.c -> contains information about WEP, WPA2, developer and more.
+   
+   - main.c -> the main menu.
+   
+   - "name".h -> is the header file of "name".c; you can write another main.c and #include "name".h
 
-License:
+# License:
 
     Copyright (c) 2017 Federico Gianno
     
