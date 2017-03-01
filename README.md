@@ -1,6 +1,16 @@
 # Wordlist
 
-    Copyright Federico Gianno
+Generates customized wordlist through a variety of methods.
+
+Usage:
+
+   <wordlist.c> contains the function to generate customized wordlist.
+   <more.c> contains information about WEP, WPA2, developer and more.
+   <"name".h> is the header file of <"name".c>; you can write a main.c and #include <"name".h> 
+
+License:
+
+    Copyright (c) 2017 Federico Gianno
     
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,5 +24,3 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
-Generates customized wordlist through a variety of methods.
