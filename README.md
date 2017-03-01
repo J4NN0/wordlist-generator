@@ -2,7 +2,7 @@
 
 Generates customized wordlist through a variety of methods.
 
-# Usage:
+# Usage
    
    - wordlist.c -> contains the function to generate customized wordlist.
    
@@ -12,7 +12,7 @@ Generates customized wordlist through a variety of methods.
    
    - "name".h -> is the header file of "name".c; you can write another main.c and #include "name".h
 
-# License:
+# License
 
     Copyright (c) 2017 Federico Gianno
     
