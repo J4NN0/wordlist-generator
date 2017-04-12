@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "wordlist.h"
-
 /*  Copyright 2017 Federico Gianno
 
     This file is part of wordlist.
@@ -21,13 +17,16 @@
 
     Developed by Nindo */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include "wordlist.h"
+
 int main()
 {
     char oper=' ';
 
     intro();
 
-    system("color 02");
     while(oper!='0'){
         fprintf(stdout, "\t\t\t\4 MAKE WORDLIST \4\t[patch 1.01]\n\n"
                " [1] Generate a wordlist with whole alphabet (a-z)|(A-Z);\n"
