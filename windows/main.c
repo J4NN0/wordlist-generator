@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "wordlist.h"
-
 /*  Copyright 2017 Federico Gianno
 
     This file is part of wordlist.
@@ -21,9 +17,13 @@
 
     Developed by Nindo */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include "wordlist.h"
+
 int main()
 {
-    //system("title Wordlist");
+    system("title Wordlist");
 
     char oper=' ';
 
