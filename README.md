@@ -11,3 +11,6 @@ Generates customized wordlist through a variety of methods.
    - main.c -> the main menu.
    
    - "name".h -> is the header file of "name".c; you can write another main.c and #include "name".h
+
+# Note
+   Copyright (c) 2017 Federico Gianno
