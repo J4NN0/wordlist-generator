@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with wordlist.  If not, see <http://www.gnu.org/licenses/>.
 
-    Developed by Nindo */
+    Developed by Federico Gianno */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -902,7 +902,7 @@ static char *insertspl(char *v, int *dim)
 {
     char spl[X] = {'"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/',
                   ':', ';', '<', '>', '=', '?', '@', '[', ']', '^', '_', '`', '~'};
-                  //Missing: '€', '§', '|', '÷', '\', ''';
+                  //Missing: 'Â€', 'Â§', '|', 'Ã·', '\', ''';
     int i=0, j=0, cnt=0, dimsaved=0, pos=0, flag=0, tmp=0, tmpX=X;
     int del[X]={-1};
     char *saved=NULL, trash;
