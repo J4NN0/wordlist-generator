@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with wordlist.  If not, see <http://www.gnu.org/licenses/>.
 
-    Developed by Nindo */
+    Developed by Federico Gianno */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -392,7 +392,7 @@ static char *init_custom(char *v, int *dim)
     for(i=0; i<(*dim); i++){
         fprintf(stdout, "Insert character %d: ", i+1);
         bugfix = i; //bug fix
-        fscanf(stdin, "%3s", trash);
+        fscanf(stdin, "%6s", trash);
 
         if((strcmp(trash, "!quit"))==0){
             (*dim) = i;
@@ -547,7 +547,7 @@ void wl_guided()
 
     //Alphabet:
     while(oper!='1' && oper!='2'){
-        fprintf(stdout, "Do you want insert some (or all) alphabet characters?\n"
+        fprintf(stdout, "Do you want insert some alphabet characters?\n"
                 "[1] Yes - [2] No\n"
                 ">> ");
         fscanf(stdin, "%1s", &oper);
@@ -1095,7 +1095,7 @@ void intro()
                     "You should have received a copy of the GNU General Public License\n"
                     "along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\n");
 
-    fprintf(stdout, "Developed by Nindo.\n\n");
+    fprintf(stdout, "Developed by Federico Gianno.\n\n");
 
     pause();
     system("CLS");
