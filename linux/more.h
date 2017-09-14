@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with wordlist.  If not, see <http://www.gnu.org/licenses/>.
 
-    Developed by Nindo */
+    Developed by Federico Gianno */
 
 void info_wep();
 void info_wpa();
