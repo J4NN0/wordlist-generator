@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with wordlist.  If not, see <http://www.gnu.org/licenses/>.
 
-    Developed by Nindo */
+    Developed by Federico Gianno */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -141,7 +141,7 @@ void info_cc()
             "With a network of staff, board, and affiliates around the world,\n"
             "Creative Commons provides free, easy-to-use copyright licenses to make\n"
             "a simple and standardized way to give the public permission to share\n"
-            "and use your creative work–on conditions of your choice.>>\n\n");
+            "and use your creative workâ€“on conditions of your choice.>>\n\n");
 
     pause();
     system("clear");
