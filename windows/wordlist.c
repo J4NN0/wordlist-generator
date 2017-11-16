@@ -98,7 +98,7 @@ void info()
         fprintf(stdout, "INFO\n\n"
                " [1] WEP - Wired Equivalent Privacy;\n"
                " [2] WPA - Wi-Fi Protected Access;\n"
-               " [3] CC - Creative Commons;\n"
+               " [3] GNU License\n"
                " [4] Wordlist;\n"
                " [5] Developer;\n"
                " [0] Exit;\n\n");
@@ -902,7 +902,7 @@ static char *insertspl(char *v, int *dim)
 {
     char spl[X] = {'"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/',
                   ':', ';', '<', '>', '=', '?', '@', '[', ']', '^', '_', '`', '~'};
-                  //Missing: '€', '§', '|', '÷', '\', ''';
+                  //Missing: 'Â€', 'Â§', '|', 'Ã·', '\', ''';
     int i=0, j=0, cnt=0, dimsaved=0, pos=0, flag=0, tmp=0, tmpX=X;
     int del[X]={-1};
     char *saved=NULL, trash;
