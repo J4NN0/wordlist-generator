@@ -118,7 +118,7 @@ void info()
                 system("CLS");
                 break;
             case '3':
-                info_cc();
+                info_GNU_license();
                 system("CLS");
                 break;
             case '4':
