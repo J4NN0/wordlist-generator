@@ -18,11 +18,11 @@ Generates customized wordlist through a variety of methods. Choose your favourit
          
    - [4] Generate a wordlist with strings, character and numbers
    
-         You can choose if you want insert in the wordlist strings, character and numbers. Then choose the size of the string that will            be generated.
+         You can choose if you want insert in the wordlist strings, character and numbers. Then choose the size of the string that will be generated.
          
    - [5] Guided wordlist (Alphabet | Number | Special Characters)
    
-         It's a guided version to make your customized wordlist. You can chose, step by step, if you want insert some or all characters             of the alphabet, some number and/or special characters.
+        It's a guided version to make your customized wordlist. You can chose, step by step, if you want insert some or all characters of the alphabet, some number and/or special characters.
          
    - [6] Generate a wordlist from data file
    
