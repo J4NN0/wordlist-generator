@@ -6,19 +6,19 @@ Generates customized wordlist through a variety of methods. Choose your favourit
    
    - [1] Generate a wordlist with whole alphabet (a-z)|(A-Z)
    
-         You have to choose only the size of the string that will be generated. (Composed by the whole alphabet)
+        You have to choose only the size of the string that will be generated. (Composed by the whole alphabet)
         
    - [2] Generate a wordlist with only numbers (0-9)
    
-         You have to choose only the size of the string that will be generated. (Composed by numbers goes from 0 to 9)
+        You have to choose only the size of the string that will be generated. (Composed by numbers goes from 0 to 9)
          
    - [3] Generate a customized wordlist (char)
    
-         You have to choose which characters will compose your final string: just put manually the characters that you prefer until                you are satisfied. Then choose the size of the string that will be generated.
+        You have to choose which characters will compose your final string: just put manually the characters that you prefer until       you are satisfied. Then choose the size of the string that will be generated.
          
    - [4] Generate a wordlist with strings, character and numbers
    
-         You can choose if you want insert in the wordlist strings, character and numbers. Then choose the size of the string that will be generated.
+        You can choose if you want insert in the wordlist strings, character and numbers. Then choose the size of the string that will be generated.
          
    - [5] Guided wordlist (Alphabet | Number | Special Characters)
    
@@ -26,11 +26,11 @@ Generates customized wordlist through a variety of methods. Choose your favourit
          
    - [6] Generate a wordlist from data file
    
-         Put the filaneme.txt of the file contains the words that will be combined for the wordlist.
+        Put the filaneme.txt of the file contains the words that will be combined for the wordlist.
          
    - [7] Info
    
-         For more info about this methods and more.
+        For more info about this methods and more.
       
 # Curiosity
 
