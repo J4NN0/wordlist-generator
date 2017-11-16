@@ -4,7 +4,7 @@ Generates customized wordlist through a variety of methods. Choose your favourit
 
 # Usage
    
-   - [1] Generate a wordlist with whole alphabet (a-z)|(A-Z)
+   - [1] Generate a wordlist with whole alphabet (a-z) | (A-Z)
    
          You have to choose only the size of the string that will be generated. (Composed by the whole alphabet)
         
