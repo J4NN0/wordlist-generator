@@ -14,7 +14,7 @@ Generates customized wordlist through a variety of methods. Choose your favourit
          
    - [3] Generate a customized wordlist (char)
    
-         You have to choose which characters will compose your final string: just put manually the characters that you prefer until       you are satisfied. Then choose the size of the string that will be generated.
+         You have to choose which characters will compose your final string: just put manually the characters that you prefer until you are satisfied. Then choose the size of the string that will be generated.
          
    - [4] Generate a wordlist with strings, character and numbers
    
