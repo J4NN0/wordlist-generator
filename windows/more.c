@@ -128,20 +128,29 @@ void info_wpa()
     system("CLS");
 }
 
-void info_cc()
+void info_GNU_license()
 {
     system("CLS");
 
-    fprintf(stdout, "Source: https://creativecommons.org/about/\n\n");
+    fprintf(stdout, "Source: http://www.gnu.org/licenses/\n\n");
 
-    fprintf(stdout, "<<Creative Commons helps you legally share your knowledge and creativity\n"
-            "to build a more equitable, accessible, and innovative world.\n"
-            "We unlock the full potential of the internet to drive a new\n"
-            "era of development, growth and productivity.\n"
-            "With a network of staff, board, and affiliates around the world,\n"
-            "Creative Commons provides free, easy-to-use copyright licenses to make\n"
-            "a simple and standardized way to give the public permission to share\n"
-            "and use your creative work–on conditions of your choice.>>\n\n");
+    fprintf(stdout, "    Copyright 2017 Federico Gianno\n\n"
+
+                        "This file is part of wordlist.\n\n"
+
+                        "wordlist is free software: you can redistribute it and/or modify\n"
+                        "it under the terms of the GNU General Public License as published by\n"
+                        "the Free Software Foundation, either version 3 of the License, or\n"
+                        "(at your option) any later version.\n\n"
+
+                        "wordlist is distributed in the hope that it will be useful,\n"
+                        "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+                        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+                        "GNU General Public License for more details.\n\n"
+
+                        "You should have received a copy of the GNU General Public License\n"
+                        "along with wordlist.\n\n");
+
 
     pause();
     system("CLS");
