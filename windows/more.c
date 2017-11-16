@@ -141,7 +141,7 @@ void info_cc()
             "With a network of staff, board, and affiliates around the world,\n"
             "Creative Commons provides free, easy-to-use copyright licenses to make\n"
             "a simple and standardized way to give the public permission to share\n"
-            "and use your creative work–on conditions of your choice.>>\n\n");
+            "and use your creative workâ€“on conditions of your choice.>>\n\n");
 
     pause();
     system("CLS");
@@ -197,7 +197,7 @@ void info_wl()
 
 void develop()
 {
-    fprintf(stdout, "Developed by Nindo.\n");
+    fprintf(stdout, "Developed by J4NN0.\n");
     fprintf(stdout, "My real name is Federico and i'm computer\n"
             "engineering student at the Polytechnic of Turin.\n\n");
 
