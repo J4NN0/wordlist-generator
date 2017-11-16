@@ -19,6 +19,6 @@
 
 void info_wep();
 void info_wpa();
-void info_cc();
+void info_GNU_license();
 void info_wl();
 void develop();
