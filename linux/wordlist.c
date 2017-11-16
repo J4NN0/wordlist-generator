@@ -98,7 +98,7 @@ void info()
         fprintf(stdout, "INFO\n\n"
                " [1] WEP - Wired Equivalent Privacy;\n"
                " [2] WPA - Wi-Fi Protected Access;\n"
-               " [3] CC - Creative Commons;\n"
+               " [3] GNU License;\n"
                " [4] Wordlist;\n"
                " [5] Developer;\n"
                " [0] Exit;\n\n");
@@ -118,7 +118,7 @@ void info()
                 system("clear");
                 break;
             case '3':
-                info_cc();
+                info_GNU_license();
                 system("clear");
                 break;
             case '4':
