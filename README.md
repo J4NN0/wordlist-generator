@@ -18,7 +18,7 @@ Generates customized wordlist through a variety of methods. Choose your favourit
          
    - [4] Generate a wordlist with strings, characters and numbers
    
-         You can choose if you want insert in the wordlist strings, character and numbers. Then choose the size of the string that will be generated.
+         You can choose if you want insert in the wordlist strings, characters and numbers. Then choose the size of the string that will be generated.
          
    - [5] Guided wordlist (Alphabet | Numbers | Special Characters)
    
