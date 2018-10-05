@@ -4,15 +4,15 @@ Generates customized wordlist through a variety of methods. Choose your favourit
 
 # Usage
    
-   [1] Generate a wordlist with whole alphabet (a-z) | (A-Z)
+   - Generate a wordlist with whole alphabet (a-z) | (A-Z)
    
         You have to choose only the size of the string that will be generated. (Composed by the whole alphabet)
         
-   [2] Generate a wordlist with only numbers (0-9)
+   - Generate a wordlist with only numbers (0-9)
    
         You have to choose only the size of the string that will be generated. (Composed by numbers goes from 0 to 9)
          
-   [3] Generate a customized wordlist (char)
+   - Generate a customized wordlist (char)
    
         You have to choose which characters will compose your final string: just put manually the characters that you prefer until you are satisfied. Then choose the size of the string that will be generated.
          
