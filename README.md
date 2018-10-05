@@ -16,19 +16,19 @@ Generates customized wordlist through a variety of methods. Choose your favourit
    
         You have to choose which characters will compose your final string: just put manually the characters that you prefer until you are satisfied. Then choose the size of the string that will be generated.
          
-   [4] Generate a wordlist with strings, characters and numbers
+   - Generate a wordlist with strings, characters and numbers
    
         You can choose if you want insert in the wordlist strings, characters and numbers. Then choose the size of the string that will be generated.
          
-   [5] Guided wordlist (Alphabet | Numbers | Special Characters)
+   - Guided wordlist (Alphabet | Numbers | Special Characters)
    
         It's a guided version to make your customized wordlist. You can chose, step by step, if you want insert some or all characters of the alphabet, some number and/or special characters.
          
-   [6] Generate a wordlist from data file
+   - Generate a wordlist from data file
    
         Put the filaneme.txt of the file contains the words that will be combined for the wordlist.
          
-   [7] Info
+   - Info
    
         For more info about this methods and more.
       
