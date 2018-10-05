@@ -23,10 +23,11 @@
 
 static int letmesee(int miss);
 static void pause();
+static void clear();
 
 void info_wep()
 {
-    system("clear");
+    system("CLS");
 
     fprintf(stdout, "Source: https://en.wikipedia.org/wiki/Wired_Equivalent_Privacy\n\n");
 
@@ -78,12 +79,12 @@ void info_wep()
             "8 bits x 29 + 24 bits IV = 256 bits of WEP key).\n\n");
 
     pause();
-    system("clear");
+    system("CLS");
 }
 
 void info_wpa()
 {
-    system("clear");
+    system("CLS");
 
     fprintf(stdout, "Source: https://en.wikipedia.org/wiki/Wi-Fi_Protected_Access\n\n");
 
@@ -125,40 +126,12 @@ void info_wpa()
             "of common passwords.\n\n");
 
     pause();
-    system("clear");
-}
-
-void info_GNU_license()
-{
-    system("clear");
-
-    fprintf(stdout, "Source: http://www.gnu.org/licenses/\n\n");
-
-    fprintf(stdout, "    Copyright 2017 Federico Gianno\n\n"
-
-                        "This file is part of wordlist.\n\n"
-
-                        "wordlist is free software: you can redistribute it and/or modify\n"
-                        "it under the terms of the GNU General Public License as published by\n"
-                        "the Free Software Foundation, either version 3 of the License, or\n"
-                        "(at your option) any later version.\n\n"
-
-                        "wordlist is distributed in the hope that it will be useful,\n"
-                        "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-                        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-                        "GNU General Public License for more details.\n\n"
-
-                        "You should have received a copy of the GNU General Public License\n"
-                        "along with wordlist.\n\n");
-
-
-    pause();
-    system("clear");
+    system("CLS");
 }
 
 void info_wl()
 {
-    system("clear");
+    system("CLS");
 
     fprintf(stdout, "[1] Generate a wordlist with whole alphabet [1]\n\n");
     fprintf(stdout, "Generate a wordlist composed by the entire alphabet.\n"
@@ -201,23 +174,23 @@ void info_wl()
             "these strings of user-defined size.\n\n");
 
     pause();
-    system("clear");
+    system("CLS");
 }
 
 void develop()
 {
     fprintf(stdout, "Developed by J4NN0.\n");
-    fprintf(stdout, "My real name is Federico and i'm computer\n"
-            "engineering student at the Polytechnic of Turin.\n\n");
+    fprintf(stdout, "My real name is Federico Gianno and i'm Software\n"
+            "computer engineering student at the Polytechnic of Turin.\n\n");
 
     fprintf(stdout, "For report bug:\n");
     fprintf(stdout, "Twitter: @giannofederico\n"
-            "Please enter as object of email 'wordlist'\n");
+            "Or send me an email\n");
 
     fprintf(stdout, "Ty for supporting.\n");
 
     pause();
-    system("clear");
+    system("CLS");
 }
 
 ///Static function
@@ -242,4 +215,15 @@ void pause()
     fprintf(stdout, "Press enter to continue...");
     getc(stdin);
     fflush(stdin);
+}
+
+static void clear()
+{
+    #ifdef _WIN32
+    system("CLS");
+    #endif //windows
+
+    #ifdef linux
+    system("clear");
+    #endif // linux
 }

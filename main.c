@@ -27,13 +27,17 @@ int main()
 
     intro();
 
+    #ifdef _WIN32
+    system("color 02");
+    #endif
+
     while(oper!='0'){
-        fprintf(stdout, "\t\t\t\4 MAKE WORDLIST \4\t[patch 1.01]\n\n"
+        fprintf(stdout, "\t\t\t\4 ==== MAKE WORDLIST ==== \4\n\n"
                " [1] Generate a wordlist with whole alphabet (a-z)|(A-Z);\n"
                " [2] Generate a wordlist with only numbers (0-9);\n"
                " [3] Generate a customized wordlist (char);\n"
-               " [4] Generate a wordlist with strings, characters and numbers;\n"
-               " [5] Guided wordlist (Alphabet | Numbers | Special Characters);\n"
+               " [4] Generate a wordlist with strings, character and numbers;\n"
+               " [5] Guided wordlist (Alphabet | Number | Special Characters);\n"
                " [6] Generate a wordlist from data file;\n"
                " [7] More info;\n"
                " [0] Exit;\n");
@@ -69,7 +73,12 @@ int main()
                 fprintf(stdout, "Press enter to continue...");
                 fflush(stdin);
                 getc(stdin);
+                #ifdef _WIN32
+                system("CLS");
+                #endif //win
+                #ifdef linux
                 system("clear");
+                #endif // linux
                 break;
         }
     }

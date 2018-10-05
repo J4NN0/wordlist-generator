@@ -78,6 +78,7 @@ void intro();
 static void explication(); //Signal handler inside
 static FILE *manage_file();
 static void pause();
+static void clear();
 static void errPointer(int err);
 static void printcount(int count, long int tot);
 static void end(int size);
@@ -89,7 +90,7 @@ static int factorial(int num); //_[4]
 ///more.h-->
 void info()
 {
-    system("clear");
+    clear();
     fflush(stdin);
 
     char oper=' ';
@@ -98,39 +99,34 @@ void info()
         fprintf(stdout, "INFO\n\n"
                " [1] WEP - Wired Equivalent Privacy;\n"
                " [2] WPA - Wi-Fi Protected Access;\n"
-               " [3] GNU License;\n"
-               " [4] Wordlist;\n"
-               " [5] Developer;\n"
+               " [3] Wordlist;\n"
+               " [4] Developer;\n"
                " [0] Exit;\n\n");
         fprintf(stdout, ">> ");
         fscanf(stdin, "%1s", &oper);
         fflush(stdin);
         switch(oper){
             case '0':
-                system("clear");
+                clear();
                 break;
             case '1':
                 info_wep();
-                system("clear");
+                clear();
                 break;
             case '2':
                 info_wpa();
-                system("clear");
+                clear();
                 break;
             case '3':
-                info_GNU_license();
-                system("clear");
-                break;
-            case '4':
                 info_wl();
-                system("clear");
-            case '5':
+                clear();
+            case '4':
                 develop();
-                system("clear");
+                clear();
             default:
                 fprintf(stdout, "Hilarious.\n");
                 pause();
-                system("clear");
+                clear();
                 break;
         }
     }
@@ -178,7 +174,7 @@ void wl_alpha()
             default:
                 fprintf(stdout, "Come on please serious.\n");
                 pause();
-                system("clear");
+                clear();
                 break;
         }
     }
@@ -426,7 +422,7 @@ void wl_str()
     str = init_str(str, &dim);
 
     while(!ok){
-        fprintf(stdout, "\nHow much time [1-9] every strings must be repeated? ");
+        fprintf(stdout, "\nHow much time from 1 to 9 each strings have to be repeated? (Suggested 1)");
         trash=getc(stdin);
         fflush(stdin);
         if(isdigit(trash) && trash!='0'){
@@ -466,7 +462,7 @@ void wl_str()
         free(str[i]);
     free(str);
 
-    system("clear");
+    clear();
 }
 
 static char **init_str(char **str, int *dim)
@@ -547,7 +543,7 @@ void wl_guided()
 
     //Alphabet:
     while(oper!='1' && oper!='2'){
-        fprintf(stdout, "Do you want insert some (or all) alphabet characters?\n"
+        fprintf(stdout, "Do you want insert some alphabet characters?\n"
                 "[1] Yes - [2] No\n"
                 ">> ");
         fscanf(stdin, "%1s", &oper);
@@ -560,7 +556,7 @@ void wl_guided()
             default:
                 fprintf(stdout, "Are you confused?\n");
                 pause();
-                system("clear");
+                clear();
                 break;
         }
     }
@@ -581,7 +577,7 @@ void wl_guided()
             default:
                 fprintf(stdout, "Are you confused?\n");
                 pause();
-                system("clear");
+                clear();
                 break;
         }
     }
@@ -602,7 +598,7 @@ void wl_guided()
             default:
                 fprintf(stdout, "Are you confused?\n");
                 pause();
-                system("clear");
+                clear();
                 break;
             }
     }
@@ -647,7 +643,7 @@ static char *insertalpha(char *v, int *dim)
             default:
                 fprintf(stdout, "Come on please serious.\n");
                 pause();
-                system("clear");
+                clear();
                 break;
         }
     }
@@ -745,7 +741,7 @@ static char *insertalpha(char *v, int *dim)
             default:
                 fprintf(stdout, "Not supported.\n");
                 pause();
-                system("clear");
+                clear();
                 break;
         }
     }
@@ -902,7 +898,7 @@ static char *insertspl(char *v, int *dim)
 {
     char spl[X] = {'"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/',
                   ':', ';', '<', '>', '=', '?', '@', '[', ']', '^', '_', '`', '~'};
-                  //Missing: 'Â€', 'Â§', '|', 'Ã·', '\', ''';
+                  //Missing: '€', '§', '|', '÷', '\', ''';
     int i=0, j=0, cnt=0, dimsaved=0, pos=0, flag=0, tmp=0, tmpX=X;
     int del[X]={-1};
     char *saved=NULL, trash;
@@ -984,7 +980,7 @@ void wl_file()
             fprintf(stdout, "\nError opening file %s.\n", filename);
             fprintf(stdout, "Enter a valid name.\n\n");
             pause();
-            system("clear");
+            clear();
         }
         else
             ok=1;
@@ -1035,7 +1031,7 @@ void wl_file()
     for(i=0; i<dim_file; i++)
         free(matr[i]);
 
-    system("clear");
+    clear();
 }
 
 static void strcpy_format(char str1[], char str2[])
@@ -1098,21 +1094,21 @@ void intro()
     fprintf(stdout, "Developed by Federico Gianno.\n\n");
 
     pause();
-    system("clear");
+    clear();
 }
 
 void explication()
 {
-    system("clear");
+    //clear();
 
-    fprintf(stdout, "\5 Remember:\n\n"
+    fprintf(stdout, "\5\n Remember:\n\n"
            "\4 Creating a wordlist of large size, probably it will need some hours!\n"
            "\4 You can put the extensions when insert the filename (.txt, .dat, etc..).\n"
            "\4 The maximum string size can be 50.\n");
 
     fprintf(stdout, "\n");
-    pause();
-    system("clear");
+    //pause();
+    //clear();
 
     //Signal handler
     if(signal(SIGINT, sigHand)==SIG_ERR || signal(SIGABRT, sigHand)==SIG_ERR || signal(SIGTERM, sigHand)==SIG_ERR){
@@ -1151,7 +1147,7 @@ FILE *manage_file()
                 default:
                     fprintf(stdout, "Are you kidding me? Come on please serious.\n");
                     pause();
-                    system("clear");
+                    clear();
                     break;
             }
         }
@@ -1168,6 +1164,17 @@ void pause()
     fprintf(stdout, "Press enter to continue...");
     getc(stdin);
     fflush(stdin);
+}
+
+static void clear()
+{
+    #ifdef _WIN32
+    system("CLS");
+    #endif //windows
+
+    #ifdef linux
+    system("clear");
+    #endif // linux
 }
 
 void errPointer(int err)
@@ -1192,7 +1199,7 @@ void end(int size)
 
     fprintf(stdout, "Memory deallocation...\n");
 
-    system("clear");
+    system("CLS");
 }
 
 ///Signal-->
