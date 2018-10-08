@@ -43,7 +43,7 @@ Generates customized wordlist through a variety of methods. Choose your favourit
    
    - main.c -> the main menu
    
-   Compile the main.c with gcc (or a compiler uploading both file .c and file .h) and enjoy!
+   Compile the *.c with gcc (or a compiler uploading both file .c and .h) and enjoy!
    File .c and .h have to be in the same sub-folder.
 
 # Note
