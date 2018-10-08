@@ -37,9 +37,7 @@ Generates customized wordlist through a variety of methods. Choose your favourit
       
 # Files
 
-   - wordlist.c
-            
-            contains the functions to generate customized wordlists (combinatorial and recursive functions)
+      wordlist.c     contains the functions to generate customized wordlists (combinatorial and recursive functions)
    
    - more.c  
             
