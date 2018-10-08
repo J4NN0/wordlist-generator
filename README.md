@@ -3,22 +3,25 @@
 Generates customized wordlist through a variety of methods. Choose your favourite method and enjoy your wordlist!
 
 # Usage
+
+      The wordlist will containt strings with length from 1 character to the max size (decided by you).
+      You can choose how each string have to be composed through the following methods:
    
    - Generate a wordlist with whole alphabet (a-z) | (A-Z)
    
-        You have to choose only the size of the string that will be generated. (Composed by the whole alphabet)
+        You have to choose only the max size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
         
    - Generate a wordlist with only numbers (0-9)
    
-        You have to choose only the size of the string that will be generated. (Composed by numbers goes from 0 to 9)
+        You have to choose only the max size of the strings that will be generated. THe strings will be composed by only numbers.
          
    - Generate a customized wordlist (char)
    
-        You have to choose which characters will compose your final string: just put manually the characters that you prefer until you are satisfied. Then choose the size of the string that will be generated.
+        You have to choose which characters will compose your final string: just put manually the characters that you prefer until you are satisfied. Then choose the max size of the strings that will be generated.
          
    - Generate a wordlist with strings, characters and numbers
    
-        You can choose if you want insert in the wordlist strings, characters and numbers. Then choose the size of the string that will be generated.
+        You can choose if you want insert in the wordlist strings, characters or numbers. Then choose the max size of the strings that will be generated.
          
    - Guided wordlist (Alphabet | Numbers | Special Characters)
    
@@ -26,7 +29,7 @@ Generates customized wordlist through a variety of methods. Choose your favourit
          
    - Generate a wordlist from data file
    
-        Put the filaneme.txt of the file contains the words that will be combined for the wordlist.
+        Put the 'filaneme.txt' of the file contains the words that will be combined for the wordlist.
          
    - Info
    
