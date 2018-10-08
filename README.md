@@ -48,4 +48,6 @@ Generates customized wordlist through a variety of methods. Choose your favourit
 
 # Note
    
+   For bugs or suggestions send me an email or do a pull-request.
+   
    Copyright (c) 2017 Federico Gianno
