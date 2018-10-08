@@ -37,11 +37,17 @@ Generates customized wordlist through a variety of methods. Choose your favourit
       
 # Files
 
-   - wordlist.c -> contains the functions to generate customized wordlists (combinatorial and recursive functions)
+   - wordlist.c
+            
+            contains the functions to generate customized wordlists (combinatorial and recursive functions)
    
-   - more.c -> contains informations about WEP, WPA2, developer and more
+   - more.c  
+            
+            contains informations about WEP, WPA2, developer and more
    
-   - main.c -> the main menu
+   - main.c 
+   
+            the main menu
    
    Compile the *.c with gcc (or a compiler uploading both file .c and .h) and enjoy!
    File .c and .h have to be in the same sub-folder.
