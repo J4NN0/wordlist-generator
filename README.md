@@ -1,6 +1,6 @@
 # Wordlist
 
-Generates customized wordlist through a variety of methods. Choose your favourite method and enjoy your wordlist!
+Make customized wordlist through a variety of methods. Choose your favourite method and enjoy your wordlist!
 
 # Usage
 
