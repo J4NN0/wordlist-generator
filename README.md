@@ -4,8 +4,8 @@ Make customized wordlist through a variety of methods. Choose your favourite met
 
 # Usage
 
-      The wordlist will containt strings with length from 1 character to the max size (decided by you).
-      You can choose how each string have to be composed through the following methods:
+The wordlist will containt strings with length from 1 character to the max size (decided by you).
+You can choose how each string have to be composed through the following methods:
    
    - Generate a wordlist with whole alphabet (a-z) | (A-Z)
    
