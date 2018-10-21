@@ -7,7 +7,7 @@ Make customized wordlist through a variety of methods. Choose your favourite met
 The wordlist will containt strings with length from 1 character to the max size (decided by you).
 You can choose how each string have to be composed through the following methods:
    
-   - Generate a wordlist with whole alphabet (a-z) | (A-Z)
+   - Generate a wordlist with whole alphabet (a-z) || (A-Z)
    
         You have to choose only the max size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
         
