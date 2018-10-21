@@ -13,7 +13,7 @@ You can choose how each string have to be composed through the following methods
         
    - Generate a wordlist with only numbers (0-9)
    
-        You have to choose only the max size of the strings that will be generated. THe strings will be composed by only numbers.
+        You have to choose only the max size of the strings that will be generated. The strings will be composed by only numbers.
          
    - Generate a customized wordlist (char)
    
@@ -23,7 +23,7 @@ You can choose how each string have to be composed through the following methods
    
         You can choose if you want insert in the wordlist strings, characters or numbers. Then choose the max size of the strings that will be generated.
          
-   - Guided wordlist (Alphabet | Numbers | Special Characters)
+   - Guided wordlist (Alphabet || Numbers || Special Characters)
    
         It's a guided version to make your customized wordlist. You can chose, step by step, if you want insert some or all characters of the alphabet, some number and/or special characters.
          
