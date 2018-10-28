@@ -49,7 +49,7 @@ You can choose how each string have to be composed through the following methods
    
             the main menu
    
-   Compile the \*.c with gcc (or a compiler uploading both file .c and .h) and enjoy!
+   Compile the \*.c with gcc (or others compilers linking both file .c and .h) and enjoy!
 
 # Note
    
