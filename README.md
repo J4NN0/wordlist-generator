@@ -29,7 +29,7 @@ You can choose how each string have to be composed through the following methods
          
    - Generate a wordlist from data file
    
-        Put the 'filaneme.txt' of the file contains the words that will be combined for the wordlist.
+        Put the filaneme of the file contains the words that will be combined for the wordlist.
          
    - Info
    
