@@ -7,7 +7,7 @@ Make customized wordlist through a variety of methods. Choose your favourite met
 The wordlist will containt strings with length from 1 character to the max size (decided by you).
 You can choose how each string have to be composed through the following methods:
    
-   - Wordlist with whole alphabet
+   - Wordlist with whole alphabet (a-zA-z)
    
         You have to choose only the max size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
         
@@ -15,17 +15,17 @@ You can choose how each string have to be composed through the following methods
    
         You have to choose only the max size of the strings that will be generated. The strings will be composed by only numbers.
          
-   - Customized wordlist
-   
-        You have to choose which characters will compose your final string: just put manually the characters that you prefer until you are satisfied. Then choose the max size of the strings that will be generated.
-         
    - Wordlist with strings, characters and numbers
    
-        You can choose if you want insert in the wordlist strings, characters or numbers. Then choose the max size of the strings that will be generated.
+        Just insert manually strings, characters or numbers that will compose the wordlist. Then choose the max size of the strings that will be generated.
          
    - Guided wordlist (Alphabet || Numbers || Special Characters)
    
         It's a guided version to make your customized wordlist. You can chose, step by step, if you want insert some or all characters of the alphabet, some number and/or special characters.
+        
+   - Dictionary wordlist
+   
+        Insert the string you want to modify for dictionary attack. For example the word 'hello' becomes 'h3ll0'.
          
    - Wordlist from data file
    
