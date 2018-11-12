@@ -32,15 +32,15 @@ int main()
     #endif
 
     while(oper!='0'){
-        fprintf(stdout, "\t\t\t\4 ==== MAKE WORDLIST ==== \4\n\n"
-               " [1] Generate a wordlist with whole alphabet (a-z)|(A-Z);\n"
-               " [2] Generate a wordlist with only numbers (0-9);\n"
-               " [3] Generate a customized wordlist (char);\n"
-               " [4] Generate a wordlist with strings, character and numbers;\n"
-               " [5] Guided wordlist (Alphabet | Number | Special Characters);\n"
-               " [6] Generate a wordlist from data file;\n"
-               " [7] More info;\n"
-               " [0] Exit;\n");
+        fprintf(stdout, "\t\t\t ==== WORDLIST GENERATOR ==== \n\n"
+               " [1] Wordlist with whole alphabet (a-zA-Z)\n"
+               " [2] Wordlist with only numbers (0-9)\n"
+               " [3] Wordlist with strings, character and numbers\n"
+               " [4] Guided wordlist\n"
+               " [5] Wordlist from data file\n"
+               " [6] Dictionary wordlist\n"
+               " [7] More info\n"
+               " [0] Exit\n");
         fprintf(stdout, "\n>> ");
         fscanf(stdin, "%1s", &oper);
         switch(oper){
@@ -54,16 +54,16 @@ int main()
                 wl_numb();
                 break;
             case '3':
-                wl_custom();
-                break;
-            case '4':
                 wl_str();
                 break;
-            case '5':
+            case '4':
                 wl_guided();
                 break;
-            case '6':
+            case '5':
                 wl_file();
+                break;
+            case '6':
+                wl_dictionary();
                 break;
             case '7':
                 info();

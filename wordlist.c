@@ -49,15 +49,13 @@ static char *init_both(char *v); //_[5]
 static int *init_numb(int *v);
 static void disprip_numb(FILE *fp_out, int pos, int *val, int *sol, int n, int tot);
 static void printSol_numb(FILE *fp_out, int *sol, int dim);
-/* Custom [3] */
-static char *init_custom(char *v, int *dim);
-//Alpha, Numb and Custom [1 & 2 & 3]:
+//Alpha and Numb [1 & 2]:
 static int *manage_size(int *size, int *sol);
-/* Str and Numb [4] */
+/* Str and Numb [3] */
 static char **init_str(char **str, int *dim);
 static void disp_str(FILE *fp_out, int pos, char **str, int *sol, int *mark, int dim, long int tot);
 static void printstr(FILE *fp_out, int *sol, char **str, int dim);
-/* Guided [5] */
+/* Guided [4] */
 static char *insertalpha(char *v, int *dim);
 static char *delalpha(char *del, int dim, int *dim_tmp);
 static int control_saved(char *saved, int dimsaved, int pos, char ch);
@@ -66,15 +64,19 @@ static char *convUp(char *v, int dim);
 static char *convLow(char *v, int dim);
 static char *insertnumb(char *v, int *dim);
 static char *insertspl(char *v, int *dim);
-//Alpha and Custom [1 & 3 & 5]:
+//Alpha and Guided [1 & 4]:
 static void disprip_char(FILE *fp_out, int pos, char *val, int *sol, int n, int dim, long int tot);
 static void printSol(FILE *fp_out, int *sol, char *val, int dim);
-/* File [6] */
+/* File [5] */
 static void strcpy_format(char str1[], char str2[]);
 static void disp_ffile(FILE *fp_out, int pos, char **matr, int *sol, int *mark, int dim, long int tot);
 static void print_ffile(FILE *fp_out, int *sol, char **matr, int dim);
+/* Dictionary [6] */
+static long int totDic(char *str);
+static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, long int tot);
+static char get_dic(char ch);
 /* All */
-void intro();
+void intro(); //Called on startup
 static void explication(); //Signal handler inside
 static FILE *manage_file();
 static void pause();
@@ -83,9 +85,9 @@ static void errPointer(int err);
 static void printcount(int count, long int tot);
 static void end(int size);
 /* Combinatorics */
-static long int totDispRip(int size, int base); //[1 & 2 & 3]
-static long int totDisp(int n, int k); //[4]
-static int factorial(int num); //_[4]
+static long int totDispRip(int size, int base);
+static long int totDisp(int n, int k);
+static int factorial(int num);
 
 ///more.h-->
 void info()
@@ -137,7 +139,7 @@ void wl_alpha()
 {
     FILE *fp=NULL;
     char *v=NULL, oper=' ';
-    int *sol=NULL, size =0;
+    int *sol=NULL, size=0;
     long int tot=0;
 
     explication();
@@ -346,67 +348,6 @@ static void printSol_numb(FILE *fp_out, int *sol, int dim)
     fprintf(fp_out, "\n");
 }
 
-///Custom-->
-void wl_custom()
-{
-    FILE *fp=NULL;
-    char *v=NULL;
-    int *sol=NULL, dim=0, size=0;
-    long int tot=0;
-
-    explication();
-    fflush(stdin);
-
-    dim = 10; //arbitrary
-    v = malloc(dim*sizeof(char));
-    if(v==NULL)
-        errPointer(-5);
-
-    v = init_custom(v, &dim);
-
-    sol = manage_size(&size, sol);
-
-    fp = manage_file();
-
-    tot = totDispRip(size, dim);
-    disprip_char(fp, 0, v, sol, size, dim, tot);
-
-    end(size);
-
-    fclose(fp);
-    free(v);
-    free(sol);
-}
-
-static char *init_custom(char *v, int *dim)
-{
-    int i=0, bugfix;
-    char trash[3];
-
-    fprintf(stdout, "Insert '!quit' when you want to end.\n\n");
-
-    for(i=0; i<(*dim); i++){
-        fprintf(stdout, "Insert character %d: ", i+1);
-        bugfix = i; //bug fix
-        fscanf(stdin, "%6s", trash);
-
-        if((strcmp(trash, "!quit"))==0){
-            (*dim) = i;
-            return v;
-        }
-
-        v[i] = trash[0];
-
-        if(i==(*dim)-1){
-            v = realloc(v, (2*(*dim))*sizeof(char));
-            if(v==NULL) errPointer(-5);
-            (*dim) = 2*(*dim);
-        }
-    }
-
-    return v;
-}
-
 ///Str & Numb-->
 void wl_str()
 {
@@ -422,7 +363,7 @@ void wl_str()
     str = init_str(str, &dim);
 
     while(!ok){
-        fprintf(stdout, "\nHow much time from 1 to 9 each strings have to be repeated? (Suggested 1)");
+        fprintf(stdout, "\nHow much time from 1 to 9 each strings have to be repeated? (Suggested 1) ");
         trash=getc(stdin);
         fflush(stdin);
         if(isdigit(trash) && trash!='0'){
@@ -543,7 +484,7 @@ void wl_guided()
 
     //Alphabet:
     while(oper!='1' && oper!='2'){
-        fprintf(stdout, "Do you want insert some alphabet characters?\n"
+        fprintf(stdout, "Do you want insert some or all alphabet characters?\n"
                 "[1] Yes - [2] No\n"
                 ">> ");
         fscanf(stdin, "%1s", &oper);
@@ -555,8 +496,6 @@ void wl_guided()
                 break;
             default:
                 fprintf(stdout, "Are you confused?\n");
-                pause();
-                clear();
                 break;
         }
     }
@@ -576,8 +515,6 @@ void wl_guided()
                 break;
             default:
                 fprintf(stdout, "Are you confused?\n");
-                pause();
-                clear();
                 break;
         }
     }
@@ -597,8 +534,6 @@ void wl_guided()
                 break;
             default:
                 fprintf(stdout, "Are you confused?\n");
-                pause();
-                clear();
                 break;
             }
     }
@@ -642,8 +577,6 @@ static char *insertalpha(char *v, int *dim)
                 break;
             default:
                 fprintf(stdout, "Come on please serious.\n");
-                pause();
-                clear();
                 break;
         }
     }
@@ -740,8 +673,6 @@ static char *insertalpha(char *v, int *dim)
                 break;
             default:
                 fprintf(stdout, "Not supported.\n");
-                pause();
-                clear();
                 break;
         }
     }
@@ -910,7 +841,7 @@ static char *insertspl(char *v, int *dim)
     for(i=0; i<X; i++)
         fprintf(stdout, "%d:%c  ", i, spl[i]);
 
-    fprintf(stdout, "\n\nInsert the character's number you want to delete.\n\n");
+    fprintf(stdout, "\n\nInsert the character's number you want to delete.\n");
     fprintf(stdout, "\nInsert 'q' when you want to end.\n\n");
 
     for(i=0; i<X; i++){
@@ -938,7 +869,7 @@ static char *insertspl(char *v, int *dim)
 
     v = realloc(v, ((*dim)+(tmpX-cnt))*sizeof(char));
     if(v==NULL)
-        errPointer(-18);
+        errPointer(-23);
 
     tmp = (*dim);
     (*dim) = (*dim)+(tmpX-cnt);
@@ -957,6 +888,147 @@ static char *insertspl(char *v, int *dim)
     free(saved);
 
     return v;
+}
+
+///Dictionary
+void wl_dictionary()
+{
+    FILE *fp=NULL;
+    char str[S], *sol=NULL;
+    long int tot=0;
+
+    explication();
+    fflush(stdin);
+
+    fprintf(stdout, "Insert string to modify for dictionary attack: ");
+    fscanf(stdin, "%49s", str);
+
+    fp = manage_file();
+    tot = totDic(str);
+
+    sol = malloc((strlen(str)+1)*sizeof(char));
+    strcpy(sol, str);
+    if(sol==NULL) errPointer(-24);
+
+    create_dic(fp, 0, str, sol, strlen(str), tot);
+
+    end(strlen(str));
+
+    fclose(fp);
+    free(sol);
+}
+
+static long int totDic(char *str)
+{
+    int i=0, ndic=0, size=strlen(str);
+    long int tot=0;
+
+    for(i=0; i<7; i++){
+        switch(tolower(str[i])){
+            case 'o':
+                ndic++;
+                break;
+            case 'i':
+                ndic++;
+                break;
+            case 'e':
+                ndic++;
+                break;
+            case 'a':
+                ndic++;
+                break;
+            case 's':
+                ndic++;
+                break;
+            case 't':
+                ndic++;
+                break;
+            case 'b':
+                ndic++;
+                break;
+            default:
+                break;
+        }
+    }
+
+    //tot = ?;
+
+    return tot;
+}
+
+static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, long int tot)
+{
+    int i=0;
+    char dic=' ';
+
+    if(i>=n)
+        return;
+
+    for(i=start; i<n; i++){
+        dic = get_dic(str[i]);
+        if(dic!=' '){
+            sol[i] = dic;
+            //printcount(++count, tot);
+            fprintf(fp_out, "%s\n", sol);
+            create_dic(fp_out, i+1, str, sol, n, tot);
+            sol[i] = str[i];
+        }
+    }
+}
+
+static char get_dic(char ch)
+{
+    char dic=' ';
+
+    switch(ch){
+        case 'o':
+            dic = 0 + '0';
+            break;
+        case 'i':
+            dic = 1 + '0';
+            break;
+        case 'e':
+            dic = 3 + '0';
+            break;
+        case 'a':
+            dic = 4 + '0';
+            break;
+        case 's':
+            dic = 5 + '0';
+            break;
+        case 't':
+            dic = 7 + '0';
+            break;
+        case 'b':
+            dic = 8 + '0';
+            break;
+        case 'O':
+            dic = 0 + '0';
+            break;
+        case 'I':
+            dic = 1 + '0';
+            break;
+        case 'E':
+            dic = 3 + '0';
+            break;
+        case 'A':
+            dic = 4 + '0';
+            break;
+        case 'S':
+            dic = 5 + '0';
+            break;
+        case 'T':
+            dic = 7 + '0';
+            break;
+        case 'B':
+            dic = 8 + '0';
+            break;
+        default:
+            dic=' ';
+            break;
+    }
+
+    return dic;
 }
 
 ///File-->
@@ -979,8 +1051,6 @@ void wl_file()
         if(fp==NULL){
             fprintf(stdout, "\nError opening file %s.\n", filename);
             fprintf(stdout, "Enter a valid name.\n\n");
-            pause();
-            clear();
         }
         else
             ok=1;
@@ -1099,16 +1169,12 @@ void intro()
 
 void explication()
 {
-    //clear();
-
-    fprintf(stdout, "\5\n Remember:\n\n"
-           "\4 Creating a wordlist of large size, probably it will need some hours!\n"
-           "\4 You can put the extensions when insert the filename (.txt, .dat, etc..).\n"
-           "\4 The maximum string size can be 50.\n");
+    fprintf(stdout, "[!] Remember:\n"
+           "[-] Creating a wordlist of large size, probably it will need some hours!\n"
+           "[-] You can put the extensions when insert the filename (.txt, .dat, etc..).\n"
+           "[-] The maximum string size can be 50.\n");
 
     fprintf(stdout, "\n");
-    //pause();
-    //clear();
 
     //Signal handler
     if(signal(SIGINT, sigHand)==SIG_ERR || signal(SIGABRT, sigHand)==SIG_ERR || signal(SIGTERM, sigHand)==SIG_ERR){
@@ -1146,8 +1212,6 @@ FILE *manage_file()
                     break;
                 default:
                     fprintf(stdout, "Are you kidding me? Come on please serious.\n");
-                    pause();
-                    clear();
                     break;
             }
         }
@@ -1199,7 +1263,7 @@ void end(int size)
 
     fprintf(stdout, "Memory deallocation...\n");
 
-    system("CLS");
+    clear();
 }
 
 ///Signal-->

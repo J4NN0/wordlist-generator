@@ -22,7 +22,7 @@ void info();
 void intro();
 void wl_alpha();
 void wl_numb();
-void wl_custom();
 void wl_str();
 void wl_guided();
 void wl_file();
+void wl_dictionary();
