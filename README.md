@@ -13,7 +13,7 @@ You can choose how each string have to be composed through the following methods
       
       With a string size of 3:
       
-      - Mode 'Uppercasw' will generate a total of 18278 strings
+      - Mode 'Uppercase' will generate a total of 18278 strings
       - Mode 'Lowercase' will generate a total of 18278 strings
       - Mode 'Both' will generatewith a total of 143364 strings
          
