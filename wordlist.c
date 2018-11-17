@@ -940,6 +940,9 @@ static long int totDic(char *str)
             case 's':
                 ndic++;
                 break;
+            case 'g':
+                ndic++;
+                break;
             case 't':
                 ndic++;
                 break;
@@ -996,6 +999,9 @@ static char get_dic(char ch)
         case 's':
             dic = 5 + '0';
             break;
+        case 'g':
+            dic = 6 + '0';
+            break;
         case 't':
             dic = 7 + '0';
             break;
@@ -1016,6 +1022,9 @@ static char get_dic(char ch)
             break;
         case 'S':
             dic = 5 + '0';
+            break;
+        case 'G':
+            dic = 6 + '0';
             break;
         case 'T':
             dic = 7 + '0';
