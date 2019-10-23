@@ -59,18 +59,21 @@ You can choose how each string have to be composed through the following methods
    
       For more info about this methods and more.
       
-# Files
+# Makefile
 
-   - wordlist.c: contains the functions to generate customized wordlists (combinatorial and recursive functions)
-   
-   - more.c: contains informations about WEP, WPA2, developer and more
-   
-   - main.c: the main menu
-   
-   Compile the \*.c with gcc (or others compilers linking both file .c and .h) and enjoy!
+To compile run
+
+        make
+        
+To cleanup the files
+
+        make clean
+        
+Files: 
+    - main.c: the main menu
+    - wordlist.c: contains the functions to generate customized wordlists (combinatorial and recursive functions)
+    - more.c: contains informations about WEP, WPA2, developer and more
 
 # Note
    
 For bugs or suggestions send me an email or do a pull-request.
-
-Copyright (c) 2017 Federico Gianno
