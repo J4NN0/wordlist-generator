@@ -70,9 +70,9 @@ To cleanup the files
         make clean
         
 Files: 
-    - main.c: the main menu
-    - wordlist.c: contains the functions to generate customized wordlists (combinatorial and recursive functions)
-    - more.c: contains informations about WEP, WPA2, developer and more
+   - *main.c*: the main menu
+   - *wordlist.c*: contains the functions to generate customized wordlists (combinatorial and recursive functions)
+   - *more.c*: contains informations about WEP, WPA2, developer and more
 
 # Note
    
