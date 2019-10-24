@@ -4,8 +4,9 @@ Make customized wordlist through a variety of methods. Choose your favourite met
 
 # Usage
 
-The wordlist will containt strings with length from 1 character to the max size (decided by you).
-You can choose how each string have to be composed through the following methods:
+The wordlist will containt strings with length from 1 character to the max size (decided by you). Keep in mind that the more will be the size of string the more time the toll will take to generate the wordlist.
+
+Different ways to create your wordlist:
    
    - Wordlist with whole alphabet (a-zA-z)
    
@@ -13,9 +14,9 @@ You can choose how each string have to be composed through the following methods
       
       With a string size of 3:
       
-      - Mode 'Uppercase' will generate a total of 18278 strings
-      - Mode 'Lowercase' will generate a total of 18278 strings
-      - Mode 'Both' will generatewith a total of 143364 strings
+      - Mode *'Uppercase'* will generate a total of 18278 strings
+      - Mode *'Lowercase'* will generate a total of 18278 strings
+      - Mode *'Both'* will generate a total of 143364 strings
          
       i.e. lowercase
       
@@ -45,7 +46,7 @@ You can choose how each string have to be composed through the following methods
    
       Insert the string you want to modify for dictionary attack. 
       
-      For example for the word 'hello':
+      For example, the word 'hello' will generate the following strings:
       
          h3llo
          h3ll0
@@ -53,7 +54,7 @@ You can choose how each string have to be composed through the following methods
          
    - Wordlist from data file
    
-      Put the filaneme of the file contains the words that will be combined for the wordlist.
+      Put the filaneme of the file containing the strings that will be combined for the wordlist.
          
    - Info
    
@@ -61,17 +62,17 @@ You can choose how each string have to be composed through the following methods
       
 # Makefile
 
-To compile run
+To compile, run
 
         make
         
-To cleanup the files
+To cleanup, run
 
         make clean
         
 Files: 
    - *main.c*: the main menu
-   - *wordlist.c*: contains the functions to generate customized wordlists (combinatorial and recursive functions)
+   - *wordlist.c*: contains the functions to generate the wordlists (combinatorial and recursive approach)
    - *more.c*: contains informations about WEP, WPA2, developer and more
 
 # Note
