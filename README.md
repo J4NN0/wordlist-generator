@@ -12,7 +12,7 @@ Different ways to create your wordlist:
    
       You have to choose only the max size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
       
-      With a string size of 3:
+      For examplee, with a max string size of 3:
       
       - Mode *'Uppercase'* will generate a total of 18278 strings
       - Mode *'Lowercase'* will generate a total of 18278 strings
