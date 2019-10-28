@@ -81,7 +81,3 @@ Files:
    - *main.c*: the main menu
    - *wordlist.c*: contains the functions to generate the wordlists (combinatorial and recursive approach)
    - *more.c*: contains informations about WEP, WPA2, developer and more
-
-# Note
-   
-For bugs or suggestions send me an email or do a pull-request.
