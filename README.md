@@ -2,7 +2,7 @@
 
 Make customized wordlist through a variety of methods. Choose your favourite method and enjoy your wordlist!
 
-**Note that**:
+### Note that:
 
 - All the information provided on this repo are for educational purposes only. The repo and author of the repo is no way responsible for any misuse of the information.
 - "wordlist" are just a term that represents the name of the repo and is not a repo that provides any illegal information. Wordlist is a repo related to Information Security, Computer Security and Penetration Testing and not a site that promotes hacking/cracking/software piracy.
