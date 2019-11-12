@@ -9,6 +9,11 @@ Make customized wordlist through a variety of methods. Choose your favourite met
 - This repo is totally meant for providing information on Computer Security, Information Security, Computer Programming, Penetration Testing and other related topics and is no way related towards the terms “CRACKING” or “HACKING” (Unethical).
 - The Software's and Scripts provided by the site should only be used for education purposes. The repo or the author can not be held responsible for the misuse of them by the users. 
 
+
+#### Chechout this demonstration video
+
+[![Watch the video](https://img.youtube.com/vi/stTbTtPT40s/maxresdefault.jpg)](https://youtu.be/stTbTtPT40s)
+
 # Usage
 
 The wordlist will containt strings with length from 1 character to the max size (decided by you). Keep in mind that the more will be the size of string the more time the toll will take to generate the wordlist.
@@ -71,13 +76,13 @@ Different ways to create your wordlist:
 
 To compile, run
 
-        make
+      make
         
 To cleanup, run
 
-        make clean
+      make clean
         
 Files: 
    - *main.c*: the main menu
-   - *wordlist.c*: contains the functions to generate the wordlists (combinatorial and recursive approach)
-   - *more.c*: contains informations about WEP, WPA2, developer and more
+   - *wordlist.c*: contains the functions to generate the wordlists
+   - *more.c*: contains information about WEP, WPA2, developer and more
