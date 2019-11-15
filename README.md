@@ -21,11 +21,15 @@ Make customized wordlist through a variety of methods. Choose your favourite met
        git clone https://github.com/J4NN0/wordlist-generator.git
        cd wordlist-generator
 
-2. Compile files
+2. Compile the files
 
        make
 
-3. Choose the method you prefer and create your wordlist
+3. Run the program
+
+       ./wordlist
+
+4. Choose the method you prefer and create your wordlist
 
    The wordlist will containt strings with length from 1 character to the max size (decided by you). Keep in mind that the more will be the size of string the more time the toll will take to generate the wordlist.
 
@@ -83,7 +87,7 @@ Make customized wordlist through a variety of methods. Choose your favourite met
 
          For more info about this methods and more.
 
-4. If you want to cleanup all files
+5. If you want to cleanup all files
 
        make clean
 
