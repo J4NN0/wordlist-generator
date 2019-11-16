@@ -42,6 +42,7 @@ int main()
                " [7] More info\n"
                " [0] Exit\n");
         fprintf(stdout, "\n>> ");
+        fflush(stdin);
         fscanf(stdin, "%1s", &oper);
         switch(oper){
             case '0':
