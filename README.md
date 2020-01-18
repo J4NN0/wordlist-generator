@@ -2,15 +2,12 @@
 
 Make customized wordlist through a variety of methods. Choose your favourite method and enjoy your wordlist!
 
-### Note that:
+### Disclaimer
 
 - All the information provided on this repo are for educational purposes only. The repo and author of the repo is no way responsible for any misuse of the information.
 - "wordlist-generator" are just a term that represents the name of the repo and is not a repo that provides any illegal information. Wordlist Generator is a repo related to Information Security, Computer Security and Penetration Testing and not a site that promotes hacking/cracking/software piracy.
 - This repo is totally meant for providing information on Computer Security, Information Security, Computer Programming, Penetration Testing and other related topics and is no way related towards the terms “CRACKING” or “HACKING” (Unethical).
 - The Software's and Scripts provided by the site should only be used for education purposes. The repo or the author can not be held responsible for the misuse of them by the users. 
-
-
-#### Chechout this demonstration video
 
 [![Watch the video](https://img.youtube.com/vi/stTbTtPT40s/maxresdefault.jpg)](https://youtu.be/stTbTtPT40s)
 
