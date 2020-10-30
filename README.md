@@ -1,30 +1,35 @@
 # Wordlist Generator
 
-Make customized wordlist through a variety of methods. Choose your favourite method and enjoy your wordlist!
+Make customized wordlists for penetration testing practice (brute force attack, dictionary attack, etc.). It is possible to generate different wordlists using different methods, choose your favourite one and enjoy your wordlist!
 
 ### Disclaimer
 
 - All the information provided on this repo are for educational purposes only. The repo and author of the repo is no way responsible for any misuse of the information.
-- "wordlist-generator" are just a term that represents the name of the repo and is not a repo that provides any illegal information. Wordlist Generator is a repo related to Information Security, Computer Security and Penetration Testing and not a site that promotes hacking/cracking/software piracy.
+- "wordlist-generator" are just a term that represents the name of the repo and is not a repo that provides any illegal information. This repo is related to Information Security, Computer Security and Penetration Testing and not a repo/site that promotes hacking/cracking/software piracy.
 - This repo is totally meant for providing information on Computer Security, Information Security, Computer Programming, Penetration Testing and other related topics and is no way related towards the terms “CRACKING” or “HACKING” (Unethical).
-- The Software's and Scripts provided by the site should only be used for education purposes. The repo or the author can not be held responsible for the misuse of them by the users.
+- The Software's and Scripts provided by the this repo should only be used for education purposes. The repo or the author can not be held responsible for the misuse of them by the users.
 
 ### Demo
 
 [![Watch the video](https://img.youtube.com/vi/stTbTtPT40s/maxresdefault.jpg)](https://youtu.be/stTbTtPT40s)
 
+# Tables of Contents
+
+- [Usage](https://github.com/J4NN0/wordlist-generator#usage)
+- [Files](https://github.com/J4NN0/wordlist-generator#files)
+
 # Usage
 
-1. Clone the repo and change directory
+1. Clone the repo and change directory:
 
        git clone https://github.com/J4NN0/wordlist-generator.git
        cd wordlist-generator
 
-2. Compile the files
+2. Compile the files:
 
        make
 
-3. Run the program
+3. Run the program:
 
        ./wordlist
 
@@ -86,12 +91,13 @@ Make customized wordlist through a variety of methods. Choose your favourite met
 
          For more info about this methods and more.
 
-5. If you want to cleanup all files
+
+If you want to cleanup all files:
 
        make clean
 
 # Files
         
-- *main.c*: the main menu
-- *wordlist.c*: contains the functions to generate the wordlists
-- *more.c*: contains information about WEP, WPA2, developer and more
+- *main.c*: the main menu.
+- *wordlist.c*: contains the functions to generate the wordlists.
+- *more.c*: contains information about WEP, WPA2, developer and more.
