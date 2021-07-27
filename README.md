@@ -1,6 +1,6 @@
 # Wordlist Generator
 
-Make customized wordlists for penetration testing practice (e.g. brute force attack, dictionary attack, etc.). It is possible to generate different wordlists using different methods, choose your favourite one and enjoy your wordlist!
+Make customised wordlists for penetration testing practice (e.g. brute force attack, dictionary attack, etc.). It is possible to generate different wordlists using different methods, choose your favourite one and enjoy your wordlist!
 
 ### Disclaimer
 
@@ -43,11 +43,11 @@ Make customized wordlists for penetration testing practice (e.g. brute force att
 
          You have to choose only the max size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
 
-         For examplee, with a max string size of 3:
+         For instance, with a string up to three characters long:
 
-         - Mode *`Uppercase`* will generate a total of 18278 strings.
-         - Mode *`Lowercase`* will generate a total of 18278 strings.
-         - Mode *`Both`* will generate a total of 143364 strings.
+         - *`Uppercase`* mode will generate a total of 18278 strings.
+         - *`Lowercase`* mode will generate a total of 18278 strings.
+         - *`Both`* mode will generate a total of 143364 strings.
 
          e.g. `lowercase` mode:
 
@@ -57,7 +57,7 @@ Make customized wordlists for penetration testing practice (e.g. brute force att
 
          You have to choose only the max size of the strings that will be generated. The strings will be composed by only numbers.
 
-         With a string size of 3, the total strings will be 1110. For instance:
+         For instace, with a string up to three characters long, the total strings will be 1110:
 
             0 00 000 001 002 003 004 005 006 007 008 009 01 010 011 012 013 ...
 
