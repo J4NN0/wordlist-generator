@@ -25,7 +25,7 @@
 #include <signal.h>
 
 #include "wordlist.h"
-#include "more.h"
+#include "../More/more.h"
 
 #define A 26 //Size alphabet
 #define N 10 //Numbers 0 to 9
@@ -829,7 +829,7 @@ static char *insertspl(char *v, int *dim)
 {
     char spl[X] = {'"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/',
                   ':', ';', '<', '>', '=', '?', '@', '[', ']', '^', '_', '`', '~'};
-                  //Missing: '€', '§', '|', '÷', '\', ''';
+                  //Missing: 'ï¿½', 'ï¿½', '|', 'ï¿½', '\', ''';
     int i=0, j=0, cnt=0, dimsaved=0, pos=0, flag=0, tmp=0, tmpX=X;
     int del[X]={-1};
     char *saved=NULL, trash;

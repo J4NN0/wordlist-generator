@@ -8,10 +8,10 @@ CFLASG = -Wall
 LDFLAGS = 
 
 # Object files that are part of the final program
-OBJFILES = main.o more.o wordlist.o
+OBJFILES = main.o More/more.o Wordlist/wordlist.o
 
 # Name of the program
-TARGET = wordlist
+TARGET = wordlist_generator
 
 all : $(TARGET)
 

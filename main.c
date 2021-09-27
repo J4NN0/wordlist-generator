@@ -19,7 +19,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "wordlist.h"
+#include "Wordlist/wordlist.h"
 
 int main()
 {

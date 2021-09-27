@@ -20,18 +20,18 @@ Make customised wordlists for penetration testing practice (e.g. brute force att
 
 # Usage
 
-1. Clone the repo and change directory:
+1. Clone the repo and change directory
 
        git clone https://github.com/J4NN0/wordlist-generator.git
        cd wordlist-generator
 
-2. Compile the files:
+2. Compile the files
 
        make
 
-3. Run the program:
+3. Run the program
 
-       ./wordlist
+       ./wordlist_generator
 
 4. Choose the method you prefer and create your wordlist:
 
@@ -98,5 +98,5 @@ Make customised wordlists for penetration testing practice (e.g. brute force att
 # Files
         
 - `main.c`: the main menu.
-- `wordlist.c`: contains all the functions to generate the wordlists.
-- `more.c`: contains some basic information about WEP, WPA2, developer and more.
+- `Wordlist` folder: contains all the functions to generate the wordlists.
+- `More` folder: contains some basic information about WEP, WPA2, developer and more.
