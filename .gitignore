@@ -1,3 +1,7 @@
+# CLion
+*.idea/
+cmake-build-debug/*
+
 # MacOS
 *.DS_Store
 

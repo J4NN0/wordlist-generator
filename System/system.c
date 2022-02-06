@@ -15,9 +15,23 @@
 // You should have received a copy of the GNU General Public License
 // along with wordlist.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef WORDLIST_GENERATOR_MORE_H
-#define WORDLIST_GENERATOR_MORE_H
+#include <stdio.h>
 
-#endif //WORDLIST_GENERATOR_MORE_H
+void pause() {
+    fflush(stdin);
+    fprintf(stdout, "Press enter to continue...");
+    getc(stdin);
+    fflush(stdin);
+}
 
-void info();
+void clear() {
+#ifdef _WIN64
+    system("CLS");
+#elif _WIN32
+    system("CLS");
+#elif __linux__
+    system("clear");
+#elif __unix__
+    system("clear");
+#endif
+}

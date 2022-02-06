@@ -15,9 +15,10 @@
 // You should have received a copy of the GNU General Public License
 // along with wordlist.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef WORDLIST_GENERATOR_MORE_H
-#define WORDLIST_GENERATOR_MORE_H
+#ifndef WORDLIST_GENERATOR_UTIL_H
+#define WORDLIST_GENERATOR_UTIL_H
 
-#endif //WORDLIST_GENERATOR_MORE_H
+#endif //WORDLIST_GENERATOR_UTIL_H
 
-void info();
+void pause();
+void clear();

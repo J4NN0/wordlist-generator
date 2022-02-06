@@ -8,7 +8,7 @@ CFLASG = -Wall
 LDFLAGS = 
 
 # Object files that are part of the final program
-OBJFILES = main.o More/more.o Wordlist/wordlist.o
+OBJFILES = main.o More/more.o Wordlist/wordlist.o Wordlist/Util/util.o System/system.o
 
 # Name of the program
 TARGET = wordlist_generator
