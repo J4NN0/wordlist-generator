@@ -39,7 +39,7 @@ Make customised wordlists for penetration testing practice (e.g. brute force att
 
    Different ways to create your wordlist:
 
-      - Wordlist with whole alphabet (a-zA-z)
+      - **Wordlist with whole alphabet [a-zA-z]**
 
          You have to choose only the max size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
 
@@ -53,7 +53,7 @@ Make customised wordlists for penetration testing practice (e.g. brute force att
 
             a aa aaa aab aac aad aae aaf aag aah aai aaj aak ... zzo zzp zzq zzr zzs zzt zzu zzv zzw zzx zzy zzz
 
-      - Wordlist with only numbers (0-9)
+      - **Wordlist with only numbers [0-9]**
 
          You have to choose only the max size of the strings that will be generated. The strings will be composed by only numbers.
 
@@ -61,11 +61,11 @@ Make customised wordlists for penetration testing practice (e.g. brute force att
 
             0 00 000 001 002 003 004 005 006 007 008 009 01 010 011 012 013 ...
 
-      - Wordlist with strings, characters and numbers
+      - **Wordlist with strings, characters and numbers**
 
          Just insert manually strings, characters and/or numbers that will compose the wordlist. Then choose the max size of the strings that will be generated.
 
-      - Guided wordlist
+      - **Guided wordlist**
 
          It's a guided version to generate your customized wordlist. You can chose, step by step, if you want insert:
 
@@ -73,7 +73,7 @@ Make customised wordlists for penetration testing practice (e.g. brute force att
          - Some or all number.
          - Some or all special characters.
 
-      - Dictionary wordlist
+      - **Dictionary wordlist**
 
          Insert the string you want to modify for dictionary attack. 
 
@@ -83,11 +83,11 @@ Make customised wordlists for penetration testing practice (e.g. brute force att
             h3ll0
             hell0
 
-      - Wordlist from data file
+      - **Wordlist from data file**
 
          Put the `filaneme` of the file containing the strings that will be combined for the wordlist.
 
-      - Info
+      - **Info**
 
          For more info about this methods and more.
 
@@ -98,5 +98,6 @@ Make customised wordlists for penetration testing practice (e.g. brute force att
 # Files
         
 - `main.c`: the main menu.
-- `Wordlist` folder: contains all the functions to generate the wordlists.
-- `More` folder: contains some basic information about WEP, WPA2, developer and more.
+- `More` folder: it contains some basic information about WEP, WPA2, developer and more.
+- `System` folder: it contains system call (based on current OS) to clean (and pause) the screen.
+- `Wordlist` folder: it contains all the functions to generate the wordlists.
