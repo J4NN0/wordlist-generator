@@ -20,3 +20,6 @@ $(TARGET) : $(OBJFILES)
 
 clean : 
 	rm -f $(OBJFILES) $(TARGET) *~
+
+run :
+	./wordlist_generator
