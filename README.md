@@ -51,7 +51,7 @@ Make customised wordlist for penetration testing practice (e.g. brute force atta
 
 The wordlist will contain strings with length from `1` character to the max size (decided by you). Keep in mind that the higher will be the string size the more will be the time needed in order to generate the wordlist.
 
-### Alphabet wordlist [a-zA-Z]
+### Alphabet wordlist
 
 You have to choose only the max size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
 
@@ -65,7 +65,7 @@ e.g. `lowercase` mode:
 
     a aa aaa aab aac aad aae aaf aag aah aai aaj aak ... zzo zzp zzq zzr zzs zzt zzu zzv zzw zzx zzy zzz
 
-### Digits wordlist [0-9]
+### Digits wordlist
 
 You have to choose only the max size of the strings that will be generated. The strings will be composed by only numbers.
 
