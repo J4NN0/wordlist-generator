@@ -15,16 +15,16 @@ Make customised wordlist for penetration testing practice (e.g. brute force atta
 
 # Tables of Contents
 
-- [Usage](https://github.com/J4NN0/wordlist-generator#usage)
-- [Wordlist](https://github.com/J4NN0/wordlist-generator#wordlist)
-  - [Alphabet wordlist](https://github.com/J4NN0/wordlist-generator#alphabet-wordlist)
-  - [Digits wordlist](https://github.com/J4NN0/wordlist-generator#digits-wordlist)
-  - [Custom wordlist](https://github.com/J4NN0/wordlist-generator#custom-wordlist)
-  - [Guided wordlist](https://github.com/J4NN0/wordlist-generator#guided-wordlist)
-  - [Dictionary wordlist](https://github.com/J4NN0/wordlist-generator#dictionary-wordlist)
-  - [Wordlist from data file](https://github.com/J4NN0/wordlist-generator#wordlist-from-data-file)
-  - [Info](https://github.com/J4NN0/wordlist-generator#info)
-- [Files](https://github.com/J4NN0/wordlist-generator#files)
+- [Usage](#wordlist-generator#usage)
+- [Wordlist](#wordlist-generator#wordlist)
+  - [Alphabet wordlist](#wordlist-generator#alphabet-wordlist)
+  - [Digits wordlist](#wordlist-generator#digits-wordlist)
+  - [Custom wordlist](#wordlist-generator#custom-wordlist)
+  - [Guided wordlist](#wordlist-generator#guided-wordlist)
+  - [Dictionary wordlist](#wordlist-generator#dictionary-wordlist)
+  - [Wordlist from data file](#wordlist-generator#wordlist-from-data-file)
+  - [Info](#wordlist-generator#info)
+- [Files](#wordlist-generator#files)
 
 # Usage
 
