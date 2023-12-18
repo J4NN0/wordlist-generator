@@ -15,16 +15,16 @@ Make customised wordlist for penetration testing practice (e.g. brute force atta
 
 # Tables of Contents
 
-- [Usage](#wordlist-generator#usage)
-- [Wordlist](#wordlist-generator#wordlist)
-  - [Alphabet wordlist](#wordlist-generator#alphabet-wordlist)
-  - [Digits wordlist](#wordlist-generator#digits-wordlist)
-  - [Custom wordlist](#wordlist-generator#custom-wordlist)
-  - [Guided wordlist](#wordlist-generator#guided-wordlist)
-  - [Dictionary wordlist](#wordlist-generator#dictionary-wordlist)
-  - [Wordlist from data file](#wordlist-generator#wordlist-from-data-file)
-  - [Info](#wordlist-generator#info)
-- [Files](#wordlist-generator#files)
+- [Usage](#usage)
+- [Wordlist](#wordlist)
+  - [Alphabet wordlist](#alphabet-wordlist)
+  - [Digits wordlist](#digits-wordlist)
+  - [Custom wordlist](#custom-wordlist)
+  - [Guided wordlist](#guided-wordlist)
+  - [Dictionary wordlist](#dictionary-wordlist)
+  - [Wordlist from data file](#wordlist-from-data-file)
+  - [Info](#info)
+- [Files](#files)
 
 # Usage
 
