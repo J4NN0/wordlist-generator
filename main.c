@@ -53,7 +53,7 @@ int main() {
 
         fprintf(stdout, ">> ");
         fflush(stdin);
-        fscanf(stdin, "%1s", &cmd);
+        fscanf(stdin, " %c", &cmd);
 
         switch(cmd){
             case '0':

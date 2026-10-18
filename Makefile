@@ -2,7 +2,7 @@
 CC = gcc
 
 # Flags
-CFLASG = -Wall
+CFLAGS = -Wall
 
 # Libraries to use (-lm, -lefence, etc)
 LDFLAGS = 
@@ -16,7 +16,7 @@ TARGET = wordlist_generator
 all : $(TARGET)
 
 $(TARGET) : $(OBJFILES)
-	$(CC) $(FLAGS) -o $(TARGET) $(OBJFILES) $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LDFLAGS)
 
 clean : 
 	rm -f $(OBJFILES) $(TARGET) *~

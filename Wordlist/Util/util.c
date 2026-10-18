@@ -33,8 +33,6 @@ static char *bubble_sort(char *v, int dim);
 static char *conv_to_uppercase(char *v, int dim);
 static char *conv_to_lowercase(char *v, int dim);
 
-/* All */
-static int factorial(int num);
 
 /// Alphabet [1]
 char *init_alphabet_uppercase(char *v) {
@@ -99,7 +97,7 @@ int *manage_size(int *size, int *sol) {
 
     while(!ok){
         fprintf(stdout, "\nEnter maximum size string to generate: ");
-        fscanf(stdin, "%1s", &tmp_size_char);
+        fscanf(stdin, " %c", &tmp_size_char);
         fflush(stdin);
         if(isdigit(tmp_size_char)) {
             ok=1;
@@ -118,7 +116,7 @@ int *manage_size(int *size, int *sol) {
 /// Str (Strings and Numbers) [3]
 char **init_str(char **str, int *dim) {
     int i;
-    char str_tmp[S];
+    char str_tmp[S], **tmp=NULL;
 
     (*dim)=10; // arbitrary;
     str = malloc((*dim)*sizeof(char*));
@@ -143,10 +141,11 @@ char **init_str(char **str, int *dim) {
         strcpy(str[i], str_tmp);
 
         if(i==(*dim)-1){
-            str = realloc(str, (2*(*dim))*sizeof(char));
-            if(str == NULL){
+            tmp = realloc(str, (2*(*dim))*sizeof(char*));
+            if(tmp == NULL){
                 err_pointer(-7);
             }
+            str = tmp;
             (*dim) = 2*(*dim);
         }
     }
@@ -168,7 +167,7 @@ char *insert_alphabet_chars(char *v, int *dim) {
                         "[2] Lowercase;\n"
                         "[3] Both (1 and 2);\n"
                         ">> ");
-        fscanf(stdin, "%1s", &oper);
+        fscanf(stdin, " %c", &oper);
         switch(oper){
             case '1': // Uppercase
                 up_low_case = 1;
@@ -190,7 +189,7 @@ char *insert_alphabet_chars(char *v, int *dim) {
         fprintf(stdout, "\nDo you want insert all alphabet or not?\n"
                         "[1] All - [2] Some\n"
                         ">> ");
-        fscanf(stdin, "%1s", &oper);
+        fscanf(stdin, " %c", &oper);
         switch(oper){
             case '1': //All alphabet
                 if(up_low_case == 1){ //Uppercase (all)
@@ -303,7 +302,7 @@ char *delete_alphabet_chars(char *del, int dim, int *dim_tmp) {
 
     for(i=0; i<dim; i++){
         fprintf(stdout, "Insert characters %d: ", i+1);
-        fscanf(stdin, "%1s", &trash);
+        fscanf(stdin, " %c", &trash);
         if(trash=='0'){
             (*dim_tmp) = i;
             break;
@@ -379,7 +378,7 @@ static char *conv_to_lowercase(char *v, int dim) {
 
 char *insert_numbers(char *v, int *dim)
 {
-    int *vnumb=NULL, bugfix;
+    int *vnumb=NULL;
     char trash;
     int i, dim_tmp, tmp;
 
@@ -393,8 +392,7 @@ char *insert_numbers(char *v, int *dim)
 
     for(i=0; i<dim_tmp; i++){
         fprintf(stdout, "Insert number %d: ", i+1);
-        bugfix = dim_tmp; //bug fix
-        fscanf(stdin, "%1s", &trash);
+        fscanf(stdin, " %c", &trash);
 
         if(trash == 'q'){
             dim_tmp = i;
@@ -454,7 +452,7 @@ char *insert_special_chars(char *v, int *dim) {
 
     for(i=0; i<X; i++){
         fprintf(stdout, "Remove n %d: ", i+1);
-        fscanf(stdin, "%1s", &trash);
+        fscanf(stdin, " %c", &trash);
 
         if(trash == 'q') {
             break;
@@ -517,9 +515,9 @@ void strcpy_format(char str1[], char str2[]) {
 }
 
 /// Dictionary [6]
-long int tot_dic(char *str) {
+unsigned long long tot_dic(char *str) {
     int i, size=strlen(str);
-    long int n_dic=0;
+    unsigned long long n_dic=0;
 
     for(i=0; i<size; i++){
         switch(tolower(str[i])){
@@ -617,16 +615,15 @@ FILE *manage_file() {
         fp = fopen(name, "r");
         if(fp==NULL){
             fprintf(stdout, "No such file with this name. Creating file %s.\n", name);
-            fp = fopen(name, "w");
             flag=1;
         }
         else{
+            fclose(fp);
             fprintf(stdout, "\nThere is a file with the same name.\n"
                             "Do you want to (1)overwrite or (2)create a new one? ");
-            scanf("%1s", &oper);
+            scanf(" %c", &oper);
             switch(oper){
                 case '1':
-                    fp = fopen(name, "w");
                     flag=1;
                     break;
                 case '2':
@@ -636,6 +633,14 @@ FILE *manage_file() {
                     break;
             }
         }
+
+        if(flag==1){
+            fp = fopen(name, "w");
+            if(fp==NULL){
+                fprintf(stderr, "Can't open file %s for writing. Try another name.\n", name);
+                flag=0;
+            }
+        }
     }
 
     fprintf(stdout, "\n");
@@ -643,8 +648,8 @@ FILE *manage_file() {
     return fp;
 }
 
-void print_count(int count, long int tot) {
-    fprintf(stdout, "Wait: %d to %li\r", count, tot);
+void print_count(unsigned long long count, unsigned long long tot) {
+    fprintf(stdout, "Wait: %llu to %llu\r", count, tot);
 }
 
 void end(int size) {
@@ -659,54 +664,41 @@ void end(int size) {
 }
 
 // Combinatorics
-long int tot_arrangements_rep(int size, int base) {
-    int i, j;
-    long int tot=0, tmp=1;
+// Both return ULLONG_MAX if the total doesn't fit
+// base^1 + base^2 + ... + base^size
+unsigned long long tot_arrangements_rep(int size, int base) {
+    unsigned long long tot=0, tmp=1;
 
-    for(i=1; i<=size; i++){
-        for(j=1; j<=i; j++){
-            tmp = (long int) base*tmp;
+    for(int i=1; i<=size; i++){
+        if(base != 0 && tmp > ULLONG_MAX/base) {
+            return ULLONG_MAX;
+        }
+        tmp *= base;
+        if(tot > ULLONG_MAX-tmp) {
+            return ULLONG_MAX;
         }
         tot += tmp;
-        tmp=1;
-    }
-
-    if(tot <= 0) {
-        // overflow
-        return INT_MAX;
-    }
-    else {
-        return tot;
-    }
-}
-
-long int tot_arrangements(int n, int k) {
-    int i, fact_n, fact_k;
-    long int tot=0;
-
-    fact_n = factorial(n);
-
-    for(i=0; i<n; i++){
-        fact_k = factorial(n-k);
-        tot += (long int) (fact_n/fact_k);
-        k--;
     }
 
     return tot;
 }
 
-static int factorial(int num) {
-    int i, fact=num;
+// n!/(n-1)! + n!/(n-2)! + ... + n!/(n-k)!
+unsigned long long tot_arrangements(int n, int k) {
+    unsigned long long tot=0, tmp=1;
 
-    if(num == 0) {
-        return 1;
+    for(int i=0; i<k; i++){
+        if(tmp > ULLONG_MAX/(n-i)) {
+            return ULLONG_MAX;
+        }
+        tmp *= (n-i);
+        if(tot > ULLONG_MAX-tmp) {
+            return ULLONG_MAX;
+        }
+        tot += tmp;
     }
 
-    for(i=1; i<num; i++) {
-        fact = fact*i;
-    }
-
-    return fact;
+    return tot;
 }
 
 void err_pointer(int err) {

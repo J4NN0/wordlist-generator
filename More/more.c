@@ -39,7 +39,7 @@ void info() {
                         " [4] Developer;\n"
                         " [0] Exit;\n\n");
         fprintf(stdout, ">> ");
-        fscanf(stdin, "%1s", &cmd);
+        fscanf(stdin, " %c", &cmd);
         fflush(stdin);
         switch(cmd){
             case '0':
@@ -239,7 +239,7 @@ int let_me_see(int miss) {
     fflush(stdin);
     fprintf(stdout, "Still %d lines.\n"
                     "Enter 'q' to exit, other to continue: ", miss);
-    fscanf(stdin, "%1s", trash);
+    fscanf(stdin, " %c", trash);
 
     if(trash[0] == 'q') {
         return 0;

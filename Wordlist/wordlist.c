@@ -26,22 +26,22 @@
 #include "../System/system.h"
 
 /* Global var */
-static int count=0;
+static unsigned long long count=0;
 
 /* Numbers [2] */
-static void arrangements_rep_numb(FILE *fp_out, int pos, int *val, int *sol, int n, int tot);
+static void arrangements_rep_numb(FILE *fp_out, int pos, int *val, int *sol, int n, unsigned long long tot);
 static void print_sol_numb(FILE *fp_out, int *sol, int dim);
 /* Strings and Numbers [3] */
-static void arrangements_str(FILE *fp_out, int pos, char **str, int *sol, int *mark, int dim, long int tot);
+static void arrangements_str(FILE *fp_out, int pos, char **str, int *sol, int *mark, int n_str, int max_len, unsigned long long tot);
 static void print_sol_str(FILE *fp_out, int *sol, char **str, int dim);
 /* Alphabet and Guided [1 & 4] */
-static void arrangements_rep_alphabet(FILE *fp_out, int pos, char *val, int *sol, int n, int dim, long int tot);
+static void arrangements_rep_alphabet(FILE *fp_out, int pos, char *val, int *sol, int n, int dim, unsigned long long tot);
 static void print_sol_alphabet(FILE *fp_out, int *sol, char *val, int dim);
 /* File [5] */
-static void arrangements_file(FILE *fp_out, int pos, char **matr, int *sol, int *mark, int dim, long int tot);
+static void arrangements_file(FILE *fp_out, int pos, char **matr, int *sol, int *mark, int dim, unsigned long long tot);
 static void print_sol_file(FILE *fp_out, int *sol, char **matr, int dim);
 /* Dictionary [6] */
-static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, long int tot);
+static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, unsigned long long tot);
 static char get_dic(char ch);
 
 /// === Alphabet ===
@@ -49,7 +49,7 @@ void wl_alphabet() {
     FILE *fp=NULL;
     char *v=NULL, oper=' ';
     int *sol=NULL, size=0;
-    long int tot;
+    unsigned long long tot;
 
     explication();
     fflush(stdin);
@@ -59,7 +59,7 @@ void wl_alphabet() {
                         "[2] Lowercase;\n"
                         "[3] Both (1 and 2);\n"
                         ">> ");
-        fscanf(stdin, "%1s", &oper);
+        fscanf(stdin, " %c", &oper);
         switch(oper){
             case '1':
                 v = init_alphabet_uppercase(v);
@@ -98,7 +98,7 @@ void wl_alphabet() {
     free(sol);
 }
 
-static void arrangements_rep_alphabet(FILE *fp_out, int pos, char *val, int *sol, int n, int dim, long int tot) {
+static void arrangements_rep_alphabet(FILE *fp_out, int pos, char *val, int *sol, int n, int dim, unsigned long long tot) {
     if(pos >= n) {
         return;
     }
@@ -123,7 +123,7 @@ void wl_numbers() {
     FILE *fp=NULL;
     int *v=NULL, *sol=NULL;
     int size=0;
-    long int tot;
+    unsigned long long tot;
 
     explication();
     fflush(stdin);
@@ -153,7 +153,7 @@ void wl_numbers() {
     free(sol);
 }
 
-static void arrangements_rep_numb(FILE *fp_out, int pos, int *val, int *sol, int n, int tot) {
+static void arrangements_rep_numb(FILE *fp_out, int pos, int *val, int *sol, int n, unsigned long long tot) {
     int i;
 
     if(pos >= n) {
@@ -183,7 +183,7 @@ void wl_str() {
     int *sol=NULL, *mark=NULL;
     char **str=NULL, trash;
     int i, dim=0, n_rip, ok=0;
-    long int tot;
+    unsigned long long tot;
 
     explication();
     fflush(stdin);
@@ -223,7 +223,7 @@ void wl_str() {
 
     tot = tot_arrangements(dim * n_rip, dim * n_rip);
 
-    arrangements_str(fp, 0, str, sol, mark, dim * n_rip, tot);
+    arrangements_str(fp, 0, str, sol, mark, dim, dim * n_rip, tot);
     fprintf(stdout, "\nAll the possible strings generated!\n");
     count=0;
     fprintf(stdout, "Use it wisely!\n");
@@ -241,20 +241,20 @@ void wl_str() {
     clear();
 }
 
-static void arrangements_str(FILE *fp_out, int pos, char **str, int *sol, int *mark, int dim, long int tot) {
+static void arrangements_str(FILE *fp_out, int pos, char **str, int *sol, int *mark, int n_str, int max_len, unsigned long long tot) {
     int i;
 
-    if(pos >= dim) {
+    if(pos >= max_len) {
         return;
     }
 
-    for(i=0; i<dim; i++){
+    for(i=0; i<n_str; i++){
         if(mark[i]>0){
             mark[i]--;
             sol[pos] = i;
             print_sol_str(fp_out, sol, str, pos + 1);
             print_count(++count, tot);
-            arrangements_str(fp_out, pos + 1, str, sol, mark, dim, tot);
+            arrangements_str(fp_out, pos + 1, str, sol, mark, n_str, max_len, tot);
             mark[i]++;
         }
     }
@@ -273,7 +273,7 @@ void wl_guided() {
     char *v=NULL;
     char oper=' ';
     int *sol=NULL, size=0, dim=0;
-    long int tot;
+    unsigned long long tot;
 
     explication();
     fflush(stdin);
@@ -283,7 +283,7 @@ void wl_guided() {
         fprintf(stdout, "Do you want insert some or all alphabet characters?\n"
                         "[1] Yes - [2] No\n"
                         ">> ");
-        fscanf(stdin, "%1s", &oper);
+        fscanf(stdin, " %c", &oper);
         switch(oper){
             case '1':
                 v = insert_alphabet_chars(v, &dim);
@@ -302,7 +302,7 @@ void wl_guided() {
         fprintf(stdout, "\nDo you want insert some number?\n"
                         "[1] Yes - [2] No\n"
                         ">> ");
-        fscanf(stdin, "%1s", &oper);
+        fscanf(stdin, " %c", &oper);
         switch(oper){
             case '1':
                 v = insert_numbers(v, &dim);
@@ -321,7 +321,7 @@ void wl_guided() {
         fprintf(stdout, "\nDo you want insert some (or all) special characters?\n"
                         "[1] Yes - [2] No\n"
                         ">> ");
-        fscanf(stdin, "%1s", &oper);
+        fscanf(stdin, " %c", &oper);
         switch(oper){
             case '1':
                 v = insert_special_chars(v, &dim);
@@ -353,7 +353,7 @@ void wl_guided() {
 void wl_dictionary() {
     FILE *fp=NULL;
     char str[S], *sol=NULL;
-    long int tot;
+    unsigned long long tot;
 
     explication();
     fflush(stdin);
@@ -365,10 +365,10 @@ void wl_dictionary() {
     tot = tot_dic(str);
 
     sol = malloc((strlen(str)+1)*sizeof(char));
-    strcpy(sol, str);
     if(sol == NULL) {
         err_pointer(-24);
     }
+    strcpy(sol, str);
 
     create_dic(fp, 0, str, sol, strlen(str), tot);
 
@@ -379,11 +379,11 @@ void wl_dictionary() {
     free(sol);
 }
 
-static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, long int tot) {
+static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, unsigned long long tot) {
     int i;
     char dic=' ';
 
-    if(i >= n) {
+    if(start >= n) {
         return;
     }
 
@@ -463,10 +463,10 @@ static char get_dic(char ch) {
 void wl_file() {
     FILE *fp;
     char filename[FILENAME_MAX];
-    char str[S], **matr=NULL;
+    char str[S], **matr=NULL, **tmp=NULL;
     int *mark=NULL, *sol=NULL;
     int i=0, ok=0, dim_file=0;
-    long int tot=0;
+    unsigned long long tot=0;
 
     explication();
     fflush(stdin);
@@ -500,15 +500,26 @@ void wl_file() {
         strcpy_format(matr[i], str);
 
         i++;
-        if(i==dim_file-1){
-            matr = realloc(matr, (2*dim_file)*sizeof(char));
-            if(matr == NULL) {
+        if(i==dim_file){
+            tmp = realloc(matr, (2*dim_file)*sizeof(char*));
+            if(tmp == NULL) {
                 err_pointer(-21);
             }
+            matr = tmp;
+            dim_file = 2*dim_file;
         }
     }
     dim_file = i;
     fclose(fp);
+
+    // Empty input file
+    if(dim_file == 0) {
+        fprintf(stdout, "File %s is empty. Nothing to generate.\n", filename);
+        free(matr);
+        pause();
+        clear();
+        return;
+    }
 
     sol = malloc(dim_file*sizeof(int));
     if(sol == NULL) {
@@ -535,11 +546,12 @@ void wl_file() {
     for(i=0; i<dim_file; i++) {
         free(matr[i]);
     }
+    free(matr);
 
     clear();
 }
 
-void arrangements_file(FILE *fp_out, int pos, char **matr, int *sol, int *mark, int dim, long int tot) {
+void arrangements_file(FILE *fp_out, int pos, char **matr, int *sol, int *mark, int dim, unsigned long long tot) {
     int i;
 
     if(pos >= dim) {

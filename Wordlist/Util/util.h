@@ -49,14 +49,14 @@ char *insert_special_chars(char *v, int *dim);
 void strcpy_format(char str1[], char str2[]);
 
 /// Dictionary [6]
-long int tot_dic(char *str);
+unsigned long long tot_dic(char *str);
 
 /// All
 void explication();
 FILE *manage_file();
-void print_count(int count, long int tot);
+void print_count(unsigned long long count, unsigned long long tot);
 void end(int size);
 void err_pointer(int err);
 // Combinatorics
-long int tot_arrangements_rep(int size, int base);
-long int tot_arrangements(int n, int k);
+unsigned long long tot_arrangements_rep(int size, int base);
+unsigned long long tot_arrangements(int n, int k);
