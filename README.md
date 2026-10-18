@@ -51,29 +51,48 @@ The wordlist will contain strings with length from the `min` size to the `max` s
 
 You have to choose only the `min` and the `max` size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
 
-For instance, with a minimum string size set at `1` and a maximum string size set at `3`:
+| Mode | `min` 1 - `max` 3 | `min` 3 - `max` 3 |
+| --- | --- | --- |
+| *`Uppercase`* | `18278` strings | `17576` strings |
+| *`Lowercase`* | `18278` strings | `17576` strings |
+| *`Both`* | `143364` strings | `140608` strings |
 
-- *`Uppercase`* mode: it will generate a total of `18278` strings.
-- *`Lowercase`* mode: it will generate a total of `18278` strings.
-- *`Both`* mode: it will generate a total of `143364` strings.
+e.g. *`lowercase`* mode with `min` 1 and `max` 3:
 
-Raising the minimum string size to `3` the *`lowercase`* mode generates only the `17576` strings of exactly `3` characters.
-
-e.g. `lowercase` mode:
-
-    a aa aaa aab aac aad aae aaf aag aah aai aaj aak ... zzo zzp zzq zzr zzs zzt zzu zzv zzw zzx zzy zzz
+    a
+    aa
+    aaa
+    aab
+    ...
+    zzx
+    zzy
+    zzz
 
 ### Digits wordlist
 
 You have to choose only the `min` and the `max` size of the strings that will be generated. The strings will be composed by only numbers.
 
-For instance, with a minimum string size set at `1` and a maximum string size set at `3`, it will generate a total of `1110` strings:
+e.g. `min` 1 and `max` 3, a total of `1110` strings (raising `min` to 3 it generates only the `1000` strings of exactly 3 digits):
 
-    0 00 000 001 002 003 004 005 006 007 008 009 01 010 011 012 013 ... 988 989 99 990 991 992 993 994 995 996 997 998 999
+    0
+    00
+    000
+    001
+    ...
+    997
+    998
+    999
 
- ### Custom wordlist
+### Custom wordlist
 
-Just insert manually strings, characters and/or numbers that will compose the wordlist. Then choose the max size of the strings that will be generated.
+Just insert manually strings, characters and/or numbers that will compose the wordlist. Then choose how many times each one can be repeated inside the same string.
+
+e.g. the strings `red` and `12` with 1 repetition:
+
+    red
+    red12
+    12
+    12red
 
 ### Guided wordlist
 
@@ -83,13 +102,13 @@ It's a guided version to generate your customized wordlist. You can chose, step 
 - Some or all numbers.
 - Some or all special characters.
 
-Then, as for the other methods, you choose the min and the max size of the strings that will be generated.
+Then, as for the other methods, you choose the `min` and the `max` size of the strings that will be generated.
 
 ### Dictionary wordlist
 
 Insert the string you want to modify for dictionary attack.
 
-For instance, the word `hello` as input will generate the following wordlist:
+e.g. the word `hello`:
 
     h3llo
     h3ll0
@@ -97,7 +116,18 @@ For instance, the word `hello` as input will generate the following wordlist:
 
 ### Wordlist from data file
 
-Enter the file's path containing the strings that will be combined for the wordlist.
+Enter the file's path containing the strings that will be combined for the wordlist. Each line of the file is used at most once per generated string.
+
+e.g. a file containing `aa`, `bb` and `cc`:
+
+    aa
+    aabb
+    aabbcc
+    aacc
+    ...
+    ccaabb
+    ccbb
+    ccbbaa
 
 ### Info
 
