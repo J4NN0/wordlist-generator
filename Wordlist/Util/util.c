@@ -487,12 +487,12 @@ char *insert_special_chars(char *v, int *dim) {
 
 /// File [5]
 void strcpy_format(char str1[], char str2[]) {
-    int dim=strlen(str2);
+    size_t dim=strlen(str2);
 
-    for(int i=dim-1; i<dim; i++) {
-        if(str2[i]=='\n') {
-            str2[i]='\0';
-        }
+    // An empty string (e.g. a line starting with a NUL byte, common in real password dumps)
+    // would make dim-1 wrap and touch str2[-1], corrupting the caller's stack.
+    if(dim > 0 && str2[dim-1]=='\n') {
+        str2[dim-1]='\0';
     }
 
     strcpy(str1, str2);
