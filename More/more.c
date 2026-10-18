@@ -22,9 +22,9 @@
 static void info_wep();
 static void info_wpa();
 static void info_wl();
-static void develop();
-static int let_me_see(int miss);
-
+static void developer();
+static int keep_reading(int miss);
+ 
 void info() {
     clear();
     fflush(stdin);
@@ -57,7 +57,7 @@ void info() {
                 info_wl();
                 clear();
             case '4':
-                develop();
+                developer();
                 clear();
             default:
                 fprintf(stdout, "Hilarious.\n");
@@ -68,6 +68,7 @@ void info() {
     }
 }
 
+/// Static functions
 void info_wep() {
     clear();
 
@@ -80,7 +81,7 @@ void info_wep() {
                     "the CRC-32 checksum for integrity. It was deprecated in 2004 and is\n"
                     "documented in the current standard.\n\n");
 
-    if((let_me_see(10 + 6 + 9)) == 0) return;
+    if((keep_reading(10 + 6 + 9)) == 0) return;
 
     // 64-bit
     fprintf(stdout, "\n\4 64-bit:\n"
@@ -95,7 +96,7 @@ void info_wep() {
                     "a small fraction of possible byte values, greatly reducing the space\n"
                     "of possible keys.\n\n");
 
-    if((let_me_see(6 + 9)) == 0) return;
+    if((keep_reading(6 + 9)) == 0) return;
 
     // 128-bit
     fprintf(stdout, "\n\4 128-bit:\n"
@@ -106,7 +107,7 @@ void info_wep() {
                     "Most devices also allow the user to enter it as 13 ASCII characters\n"
                     "(8 bits x 13 + 24 bits IV = 128 bits of WEP key).\n\n");
 
-    if((let_me_see(9)) == 0) return;
+    if((keep_reading(9)) == 0) return;
 
     // 152-bit
     fprintf(stdout, "\n\4 152-bit:\n"
@@ -139,7 +140,7 @@ void info_wpa() {
                     "128-bit key for each packet and\n"
                     "thus prevents the types of attacks that compromised WEP.\n\n");
 
-    if((let_me_see(6 + 11)) == 0) return;
+    if((keep_reading(6 + 11)) == 0) return;
 
     // WPA2
     fprintf(stdout, "\n\4 WPA2:\n"
@@ -150,7 +151,7 @@ void info_wpa() {
                     "from March 13, 2006, WPA2 certifications mandatory for all new devices\n"
                     "to bear the Wi-Fi trademark.\n\n");
 
-    if((let_me_see(11)) == 0) return;
+    if((keep_reading(11)) == 0) return;
 
     // Security issues
     fprintf(stdout, "\n\4 Security issues:\n"
@@ -178,35 +179,35 @@ void info_wl() {
                     "Each line of the created file will have a provisions repeated\n"
                     "of alphabet letters of user-defined size.\n\n");
 
-    if((let_me_see(3 + 3 + 3 + 3 + 3)) == 0) return;
+    if((keep_reading(3 + 3 + 3 + 3 + 3)) == 0) return;
 
     fprintf(stdout, "[2] Generate a wordlist with only numbers [2]\n\n");
     fprintf(stdout, "Generate a wordlist composed by numbers.\n"
                     "Each line of the created file will have a provisions repeated\n"
                     "of numbers of user-defined size.\n\n");
 
-    if((let_me_see(3 + 3 + 3 + 3)) == 0) return;
+    if((keep_reading(3 + 3 + 3 + 3)) == 0) return;
 
     fprintf(stdout, "[3] Generate a customized wordlist [3]\n\n");
     fprintf(stdout, "Generate a wordlist composed by characters that you choose.\n"
                     "Each line of the created file will have a provisions repeated\n"
                     "of these characters of user-defined size.\n\n");
 
-    if((let_me_see(3 + 3 + 3)) == 0) return;
+    if((keep_reading(3 + 3 + 3)) == 0) return;
 
     fprintf(stdout, "[4] Generate a wordlist with strings, character and numbers [4]\n\n");
     fprintf(stdout, "Generate a wordlist composed by provisions of string,\n"
                     "character and numbers. Each line of the created file will have a\n"
                     "provisions of these strings, character and numbers.\n\n");
 
-    if((let_me_see(3 + 3)) == 0) return;
+    if((keep_reading(3 + 3)) == 0) return;
 
     fprintf(stdout, "[5] Guided wordlist [5]\n\n");
     fprintf(stdout, "Generate a wordlist composed by alphabet letters,\n"
                     "numbers and special characters. Each line of the created file will have\n"
                     "a provisions repeated of these characters of user-defined size.\n\n");
 
-    if((let_me_see(3)) == 0) return;
+    if((keep_reading(3)) == 0) return;
 
     fprintf(stdout, "[6] Generate a wordlist from data file [6]\n\n");
     fprintf(stdout, "Generate a wordlist composed by provisions of file strings.\n"
@@ -217,23 +218,18 @@ void info_wl() {
     clear();
 }
 
-void develop() {
+void developer() {
     fprintf(stdout, "Developed by J4NN0.\n");
-    fprintf(stdout, "My real name is Federico Gianno and i'm Software\n"
-                    "computer engineering student at the Polytechnic of Turin.\n\n");
+    fprintf(stdout, "My real name is Federico Gianno and I'm a software engineer.\n\n");
 
-    fprintf(stdout, "For report bug:\n");
-    fprintf(stdout, "Twitter: @giannofederico\n"
-                    "Or send me an email\n");
-
+    fprintf(stdout, "For report bug, open an issue on GitHub: https://github.com/J4NN0/wordlist-generator/issues\n");
     fprintf(stdout, "Ty for supporting.\n");
 
     pause();
     clear();
 }
 
-/// Static function
-int let_me_see(int miss) {
+int keep_reading(int miss) {
     char trash[1];
 
     fflush(stdin);
