@@ -2,12 +2,8 @@
 
 Make customised wordlist for penetration testing practice (e.g. brute force attack, dictionary attack, etc.). It is possible to generate different wordlist using different methods, choose your favourite one and enjoy your wordlist!
 
-### Disclaimer
-
-- All the information provided on this repo are for educational purposes only. The repo and author of the repo is no way responsible for any misuse of the information.
-- The term "wordlist-generator" just represents the name of the repo and is not a repo that provides any illegal information. This repo is related to Information Security, Computer Security and Penetration Testing and not a repo/site that promotes hacking/cracking/software piracy.
-- This repo is totally meant for providing information on Computer Security, Information Security, Computer Programming, Penetration Testing and other related topics and is no way related towards the terms “CRACKING” or “HACKING” (Unethical).
-- The Software's and Scripts provided by the this repo should only be used for education purposes. The repo or the author can not be held responsible for the misuse of them by the users.
+> [!CAUTION]
+> This tool is for education and authorized security testing only. Use it only against systems  you own or have explicit permission to test. The author is not responsible for any misuse or damage caused by this software.
 
 ### Demo
 
