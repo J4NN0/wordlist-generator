@@ -27,6 +27,9 @@
 /* Signal */
 static void sig_hand(int signo);
 
+/* Alphabet [1] */
+static char *init_alphabet(char *v, int upper, int lower);
+
 /* Guided [4] */
 static int control_saved(char *saved, int dim_saved, int pos, char ch);
 static char *bubble_sort(char *v, int dim);
@@ -35,59 +38,40 @@ static char *conv_to_lowercase(char *v, int dim);
 
 
 /// Alphabet [1]
-char *init_alphabet_uppercase(char *v) {
-    v = malloc(A*sizeof(char));
+// Fills v with the uppercase letters, the lowercase ones, or both in that order.
+static char *init_alphabet(char *v, int upper, int lower) {
+    int bck=0;
+
+    v = malloc(((upper ? A : 0) + (lower ? A : 0))*sizeof(char));
     if(v == NULL) {
         err_pointer(-1);
     }
 
-    for(int i=0; i<A; i++) {
-        v[i] = 'A' + i;
+    if(upper) {
+        for(int i=0; i<A; i++) {
+            v[bck++] = 'A' + i;
+        }
+    }
+
+    if(lower) {
+        for(int i=0; i<A; i++) {
+            v[bck++] = 'a' + i;
+        }
     }
 
     return v;
+}
+
+char *init_alphabet_uppercase(char *v) {
+    return init_alphabet(v, 1, 0);
 }
 
 char *init_alphabet_lowercase(char *v) {
-    v = malloc(A*sizeof(char));
-    if(v == NULL) {
-        err_pointer(-1);
-    }
-
-    for(int i=0; i<A; i++) {
-        v[i] = 'a' + i;
-    }
-
-    return v;
+    return init_alphabet(v, 0, 1);
 }
 
 char *init_alphabet_uppercase_and_lowercase(char *v) {
-    int i, bck;
-
-    v = malloc((A+A)*sizeof(char));
-    if(v == NULL) {
-        err_pointer(-1);
-    }
-
-    for(i=0; i<A; i++) {
-        v[i] = 'A' + i;
-    }
-    bck = i;
-
-    for(i=0; i<A; i++, bck++) {
-        v[bck] = 'a' + i;
-    }
-
-    return v;
-}
-
-/// Numbers [2]
-int *init_numbers(int *v) {
-    for(int i=0; i<N; i++) {
-        v[i] = i;
-    }
-
-    return v;
+    return init_alphabet(v, 1, 1);
 }
 
 /// Alphabet and Numbers [1 & 2]:
@@ -515,38 +499,50 @@ void strcpy_format(char str1[], char str2[]) {
 }
 
 /// Dictionary [6]
+// Returns the digit the character can be swapped with, or ' ' when there is none.
+char get_dic(char ch) {
+    char dic=' ';
+
+    switch(tolower(ch)){
+        case 'o':
+            dic = 0 + '0';
+            break;
+        case 'i':
+            dic = 1 + '0';
+            break;
+        case 'e':
+            dic = 3 + '0';
+            break;
+        case 'a':
+            dic = 4 + '0';
+            break;
+        case 's':
+            dic = 5 + '0';
+            break;
+        case 'g':
+            dic = 6 + '0';
+            break;
+        case 't':
+            dic = 7 + '0';
+            break;
+        case 'b':
+            dic = 8 + '0';
+            break;
+        default:
+            dic = ' ';
+            break;
+    }
+
+    return dic;
+}
+
 unsigned long long tot_dic(char *str) {
     int i, size=strlen(str);
     unsigned long long n_dic=0;
 
     for(i=0; i<size; i++){
-        switch(tolower(str[i])){
-            case 'o':
-                n_dic++;
-                break;
-            case 'i':
-                n_dic++;
-                break;
-            case 'e':
-                n_dic++;
-                break;
-            case 'a':
-                n_dic++;
-                break;
-            case 's':
-                n_dic++;
-                break;
-            case 'g':
-                n_dic++;
-                break;
-            case 't':
-                n_dic++;
-                break;
-            case 'b':
-                n_dic++;
-                break;
-            default:
-                break;
+        if(get_dic(str[i]) != ' ') {
+            n_dic++;
         }
     }
 
@@ -554,6 +550,38 @@ unsigned long long tot_dic(char *str) {
 }
 
 /// All
+char **chars_to_tokens(const char *v, int dim) {
+    char **tok=NULL, *buf=NULL;
+
+    if(dim <= 0) {
+        return NULL;
+    }
+
+    tok = malloc(dim*sizeof(char*));
+    buf = malloc((2*dim)*sizeof(char)); // one "c\0" pair per character
+
+    if(tok == NULL || buf == NULL) {
+        err_pointer(-25);
+    }
+
+    for(int i=0; i<dim; i++){
+        buf[2*i] = v[i];
+        buf[2*i+1] = '\0';
+        tok[i] = &buf[2*i];
+    }
+
+    return tok;
+}
+
+void free_char_tokens(char **tok) {
+    if(tok == NULL) {
+        return;
+    }
+
+    free(tok[0]); // single backing buffer, shared by every token
+    free(tok);
+}
+
 // Signal
 void sig_hand(int signo)
 {

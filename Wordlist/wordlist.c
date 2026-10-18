@@ -28,27 +28,17 @@
 /* Global var */
 static unsigned long long count=0;
 
-/* Numbers [2] */
-static void arrangements_rep_numb(FILE *fp_out, int pos, int *val, int *sol, int n, unsigned long long tot);
-static void print_sol_numb(FILE *fp_out, int *sol, int dim);
-/* Strings and Numbers [3] */
-static void arrangements_str(FILE *fp_out, int pos, char **str, int *sol, int *mark, int n_str, int max_len, unsigned long long tot);
-static void print_sol_str(FILE *fp_out, int *sol, char **str, int dim);
-/* Alphabet and Guided [1 & 4] */
-static void arrangements_rep_alphabet(FILE *fp_out, int pos, char *val, int *sol, int n, int dim, unsigned long long tot);
-static void print_sol_alphabet(FILE *fp_out, int *sol, char *val, int dim);
-/* File [5] */
-static void arrangements_file(FILE *fp_out, int pos, char **matr, int *sol, int *mark, int dim, unsigned long long tot);
-static void print_sol_file(FILE *fp_out, int *sol, char **matr, int dim);
+/* Arrangements engine, shared by Alphabet [1], Numbers [2], Str [3], Guided [4] and File [5] */
+static void arrangements(FILE *fp_out, int pos, char **tok, int *sol, int *mark, int n_tok, int max_len, unsigned long long tot);
+static void print_sol(FILE *fp_out, int *sol, char **tok, int dim);
 /* Dictionary [6] */
 static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, unsigned long long tot);
-static char get_dic(char ch);
 
 /// === Alphabet ===
 void wl_alphabet() {
     FILE *fp=NULL;
-    char *v=NULL, oper=' ';
-    int *sol=NULL, size=0;
+    char *v=NULL, **tok=NULL, oper=' ';
+    int *sol=NULL, size=0, dim=0;
     unsigned long long tot;
 
     explication();
@@ -63,24 +53,15 @@ void wl_alphabet() {
         switch(oper){
             case '1':
                 v = init_alphabet_uppercase(v);
-                sol = manage_size(&size, sol);
-                fp = manage_file();
-                tot = tot_arrangements_rep(size, A);
-                arrangements_rep_alphabet(fp, 0, v, sol, size, A, tot);
+                dim = A;
                 break;
             case '2':
                 v = init_alphabet_lowercase(v);
-                sol = manage_size(&size, sol);
-                fp = manage_file();
-                tot = tot_arrangements_rep(size, A);
-                arrangements_rep_alphabet(fp, 0, v, sol, size, A, tot);
+                dim = A;
                 break;
             case '3':
                 v = init_alphabet_uppercase_and_lowercase(v);
-                sol = manage_size(&size, sol);
-                fp = manage_file();
-                tot = tot_arrangements_rep(size, A + A);
-                arrangements_rep_alphabet(fp, 0, v, sol, size, A + A, tot);
+                dim = A + A;
                 break;
             default:
                 fprintf(stdout, "Come on please, seriously.\n");
@@ -90,91 +71,45 @@ void wl_alphabet() {
         }
     }
 
+    sol = manage_size(&size, sol);
+    fp = manage_file();
+    tok = chars_to_tokens(v, dim);
+
+    tot = tot_arrangements_rep(size, dim);
+    arrangements(fp, 0, tok, sol, NULL, dim, size, tot);
+
     end(size);
     count = 0;
 
     fclose(fp);
     free(v);
     free(sol);
-}
-
-static void arrangements_rep_alphabet(FILE *fp_out, int pos, char *val, int *sol, int n, int dim, unsigned long long tot) {
-    if(pos >= n) {
-        return;
-    }
-
-    for(int i=0; i<dim; i++){
-        sol[pos] = i;
-        print_sol_alphabet(fp_out, sol, val, pos + 1);
-        print_count(++count, tot);
-        arrangements_rep_alphabet(fp_out, pos + 1, val, sol, n, dim, tot);
-    }
-}
-
-static void print_sol_alphabet(FILE *fp_out, int *sol, char *val, int dim) {
-    for(int t=0; t<dim; t++) {
-        fprintf(fp_out, "%c", val[sol[t]]);
-    }
-    fprintf(fp_out, "\n");
+    free_char_tokens(tok);
 }
 
 /// === Number ===
 void wl_numbers() {
     FILE *fp=NULL;
-    int *v=NULL, *sol=NULL;
-    int size=0;
+    char **tok=NULL;
+    int *sol=NULL, size=0;
     unsigned long long tot;
 
     explication();
     fflush(stdin);
 
-    v = malloc(N*sizeof(int));
-    if(v == NULL) {
-        err_pointer(-3);
-    }
-
-    v = init_numbers(v);
-
     sol = manage_size(&size, sol);
-    if(sol == NULL) {
-        err_pointer(-4);
-    }
-
     fp = manage_file();
+    tok = chars_to_tokens("0123456789", N);
 
     tot = tot_arrangements_rep(size, N);
-    arrangements_rep_numb(fp, 0, v, sol, size, tot);
+    arrangements(fp, 0, tok, sol, NULL, N, size, tot);
 
     end(size);
     count = 0;
 
     fclose(fp);
-    free(v);
     free(sol);
-}
-
-static void arrangements_rep_numb(FILE *fp_out, int pos, int *val, int *sol, int n, unsigned long long tot) {
-    int i;
-
-    if(pos >= n) {
-        return;
-    }
-
-    for(i=0; i<N; i++){
-        sol[pos] = val[i];
-        print_sol_numb(fp_out, sol, pos + 1);
-        print_count(++count, tot);
-        arrangements_rep_numb(fp_out, pos + 1, val, sol, n, tot);
-    }
-}
-
-static void print_sol_numb(FILE *fp_out, int *sol, int dim)
-{
-    int t=0;
-
-    for(t=0; t<dim; t++)
-        fprintf(fp_out, "%d", sol[t]);
-    fprintf(fp_out, "\n");
+    free_char_tokens(tok);
 }
 
 /// === Str & Numb ===
@@ -223,7 +158,7 @@ void wl_str() {
 
     tot = tot_arrangements(dim * n_rip, dim * n_rip);
 
-    arrangements_str(fp, 0, str, sol, mark, dim, dim * n_rip, tot);
+    arrangements(fp, 0, str, sol, mark, dim, dim * n_rip, tot);
     fprintf(stdout, "\nAll the possible strings generated!\n");
     count=0;
     fprintf(stdout, "Use it wisely!\n");
@@ -241,36 +176,10 @@ void wl_str() {
     clear();
 }
 
-static void arrangements_str(FILE *fp_out, int pos, char **str, int *sol, int *mark, int n_str, int max_len, unsigned long long tot) {
-    int i;
-
-    if(pos >= max_len) {
-        return;
-    }
-
-    for(i=0; i<n_str; i++){
-        if(mark[i]>0){
-            mark[i]--;
-            sol[pos] = i;
-            print_sol_str(fp_out, sol, str, pos + 1);
-            print_count(++count, tot);
-            arrangements_str(fp_out, pos + 1, str, sol, mark, n_str, max_len, tot);
-            mark[i]++;
-        }
-    }
-}
-
-static void print_sol_str(FILE *fp_out, int *sol, char **str, int dim) {
-    for(int t=0; t<dim; t++) {
-        fprintf(fp_out, "%s", str[sol[t]]);
-    }
-    fprintf(fp_out, "\n");
-}
-
 /// === Guided ===
 void wl_guided() {
     FILE *fp=NULL;
-    char *v=NULL;
+    char *v=NULL, **tok=NULL;
     char oper=' ';
     int *sol=NULL, size=0, dim=0;
     unsigned long long tot;
@@ -338,8 +247,10 @@ void wl_guided() {
 
     fp = manage_file();
 
+    tok = chars_to_tokens(v, dim);
+
     tot = tot_arrangements_rep(size, dim);
-    arrangements_rep_alphabet(fp, 0, v, sol, size, dim, tot);
+    arrangements(fp, 0, tok, sol, NULL, dim, size, tot);
 
     end(size);
     count = 0;
@@ -347,6 +258,7 @@ void wl_guided() {
     fclose(fp);
     free(v);
     free(sol);
+    free_char_tokens(tok);
 }
 
 /// === Dictionary ===
@@ -397,66 +309,6 @@ static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, uns
             sol[i] = str[i];
         }
     }
-}
-
-static char get_dic(char ch) {
-    char dic=' ';
-
-    switch(ch){
-        case 'o':
-            dic = 0 + '0';
-            break;
-        case 'i':
-            dic = 1 + '0';
-            break;
-        case 'e':
-            dic = 3 + '0';
-            break;
-        case 'a':
-            dic = 4 + '0';
-            break;
-        case 's':
-            dic = 5 + '0';
-            break;
-        case 'g':
-            dic = 6 + '0';
-            break;
-        case 't':
-            dic = 7 + '0';
-            break;
-        case 'b':
-            dic = 8 + '0';
-            break;
-        case 'O':
-            dic = 0 + '0';
-            break;
-        case 'I':
-            dic = 1 + '0';
-            break;
-        case 'E':
-            dic = 3 + '0';
-            break;
-        case 'A':
-            dic = 4 + '0';
-            break;
-        case 'S':
-            dic = 5 + '0';
-            break;
-        case 'G':
-            dic = 6 + '0';
-            break;
-        case 'T':
-            dic = 7 + '0';
-            break;
-        case 'B':
-            dic = 8 + '0';
-            break;
-        default:
-            dic=' ';
-            break;
-    }
-
-    return dic;
 }
 
 /// === File ===
@@ -526,14 +378,19 @@ void wl_file() {
         err_pointer(-22);
     }
 
-    mark = calloc(dim_file, sizeof(int));
+    // Each line can be used once: arrangements without repetition
+    mark = malloc(dim_file*sizeof(int));
     if(mark == NULL) {
         err_pointer(-23);
     }
 
+    for(i=0; i<dim_file; i++) {
+        mark[i] = 1;
+    }
+
     tot = tot_arrangements(dim_file, dim_file);
     fp = manage_file();
-    arrangements_file(fp, 0, matr, sol, mark, dim_file, tot);
+    arrangements(fp, 0, matr, sol, mark, dim_file, dim_file, tot);
     fprintf(stdout, "\nAll the possible strings generated!\n");
     count=0;
     fprintf(stdout, "Use it wisely!\n");
@@ -551,28 +408,35 @@ void wl_file() {
     clear();
 }
 
-void arrangements_file(FILE *fp_out, int pos, char **matr, int *sol, int *mark, int dim, unsigned long long tot) {
+static void arrangements(FILE *fp_out, int pos, char **tok, int *sol, int *mark, int n_tok, int max_len, unsigned long long tot) {
     int i;
 
-    if(pos >= dim) {
+    if(pos >= max_len) {
         return;
     }
 
-    for(i=0; i<dim; i++){
-        if(mark[i]==0){
-            mark[i]=1;
-            sol[pos] = i;
-            print_sol_file(fp_out, sol, matr, pos + 1);
-            print_count(++count, tot);
-            arrangements_file(fp_out, pos + 1, matr, sol, mark, dim, tot);
-            mark[i]=0;
+    for(i=0; i<n_tok; i++){
+        if(mark != NULL){
+            if(mark[i] <= 0) {
+                continue;
+            }
+            mark[i]--;
+        }
+
+        sol[pos] = i;
+        print_sol(fp_out, sol, tok, pos + 1);
+        print_count(++count, tot);
+        arrangements(fp_out, pos + 1, tok, sol, mark, n_tok, max_len, tot);
+
+        if(mark != NULL) {
+            mark[i]++;
         }
     }
 }
 
-void print_sol_file(FILE *fp_out, int *sol, char **matr, int dim) {
+static void print_sol(FILE *fp_out, int *sol, char **tok, int dim) {
     for(int t=0; t<dim; t++) {
-        fprintf(fp_out, "%s", matr[sol[t]]);
+        fprintf(fp_out, "%s", tok[sol[t]]);
     }
     fprintf(fp_out, "\n");
 }

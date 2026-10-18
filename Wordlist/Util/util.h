@@ -30,9 +30,6 @@ char *init_alphabet_uppercase(char *v); //_[5]
 char *init_alphabet_lowercase(char *v); //_[5]
 char *init_alphabet_uppercase_and_lowercase(char *v); //_[5]
 
-/// Numbers [2]
-int *init_numbers(int *v);
-
 /// Alphabet and Numbers [1 & 2]:
 int *manage_size(int *size, int *sol);
 
@@ -49,9 +46,14 @@ char *insert_special_chars(char *v, int *dim);
 void strcpy_format(char str1[], char str2[]);
 
 /// Dictionary [6]
+char get_dic(char ch);
 unsigned long long tot_dic(char *str);
 
 /// All
+// Wraps a plain char table into a table of one-character strings, so that every
+// generator can feed the same char** based arrangements engine.
+char **chars_to_tokens(const char *v, int dim);
+void free_char_tokens(char **tok);
 void explication();
 FILE *manage_file();
 void print_count(unsigned long long count, unsigned long long tot);
