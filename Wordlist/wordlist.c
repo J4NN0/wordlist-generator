@@ -30,7 +30,7 @@ static unsigned long long count=0;
 
 /* Arrangements engine, shared by Alphabet [1], Numbers [2], Str [3], Guided [4] and File [5] */
 static void arrangements(FILE *fp_out, int pos, char **tok, int *sol, int *mark, int n_tok, int max_len, unsigned long long tot);
-static void print_sol(FILE *fp_out, int *sol, char **tok, int dim);
+static void print_sol(FILE *fp_out, const int *sol, char **tok, int dim);
 /* Dictionary [6] */
 static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, unsigned long long tot);
 
@@ -434,7 +434,7 @@ static void arrangements(FILE *fp_out, int pos, char **tok, int *sol, int *mark,
     }
 }
 
-static void print_sol(FILE *fp_out, int *sol, char **tok, int dim) {
+static void print_sol(FILE *fp_out, const int *sol, char **tok, int dim) {
     for(int t=0; t<dim; t++) {
         fprintf(fp_out, "%s", tok[sol[t]]);
     }

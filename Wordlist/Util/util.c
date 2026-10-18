@@ -729,7 +729,7 @@ unsigned long long tot_arrangements(int n, int k) {
     return tot;
 }
 
-void err_pointer(int err) {
+WL_NORETURN void err_pointer(int err) {
     fprintf(stderr, "Can't allocate memory.\nError %d\n", err);
     pause();
     exit(EXIT_FAILURE);

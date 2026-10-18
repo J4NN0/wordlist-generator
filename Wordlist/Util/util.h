@@ -20,6 +20,14 @@
 
 #endif //WORDLIST_GENERATOR_UTIL_H
 
+// err_pointer() never returns: telling the compiler lets it see that a failed
+// allocation check cannot fall through with a null pointer.
+#if defined(__GNUC__)
+#define WL_NORETURN __attribute__((noreturn))
+#else
+#define WL_NORETURN
+#endif
+
 #define A 26 // Alphabet size
 #define N 10 // Numbers (from 0 to 9)
 #define S 50 // Max string size
@@ -58,7 +66,7 @@ void explication();
 FILE *manage_file();
 void print_count(unsigned long long count, unsigned long long tot);
 void end(int size);
-void err_pointer(int err);
+WL_NORETURN void err_pointer(int err);
 // Combinatorics
 unsigned long long tot_arrangements_rep(int size, int base);
 unsigned long long tot_arrangements(int n, int k);
