@@ -49,17 +49,19 @@ Make customised wordlist for penetration testing practice (e.g. brute force atta
 
 # Wordlist
 
-The wordlist will contain strings with length from `1` character to the max size (decided by you). Keep in mind that the higher will be the string size the more will be the time needed in order to generate the wordlist.
+The wordlist will contain strings with length from the `min` size to the `max` size (both decided by you). Setting a minimum size is handy when the target has a known password policy: with a minimum of `8` all the shorter combinations are skipped and never written to the file. Keep in mind that the higher will be the string size the more will be the time needed in order to generate the wordlist.
 
 ### Alphabet wordlist
 
-You have to choose only the max size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
+You have to choose only the `min` and the `max` size of the strings that will be generated. The strings will be composed by the whole alphabet (lower case, upper case or both).
 
-For instance, with a maximum string size set at `3`:
+For instance, with a minimum string size set at `1` and a maximum string size set at `3`:
 
 - *`Uppercase`* mode: it will generate a total of `18278` strings.
 - *`Lowercase`* mode: it will generate a total of `18278` strings.
 - *`Both`* mode: it will generate a total of `143364` strings.
+
+Raising the minimum string size to `3` the *`lowercase`* mode generates only the `17576` strings of exactly `3` characters.
 
 e.g. `lowercase` mode:
 
@@ -67,9 +69,9 @@ e.g. `lowercase` mode:
 
 ### Digits wordlist
 
-You have to choose only the max size of the strings that will be generated. The strings will be composed by only numbers.
+You have to choose only the `min` and the `max` size of the strings that will be generated. The strings will be composed by only numbers.
 
-For instance, with a maximum string size set at `3`, it will generate a total of `1110` strings:
+For instance, with a minimum string size set at `1` and a maximum string size set at `3`, it will generate a total of `1110` strings:
 
     0 00 000 001 002 003 004 005 006 007 008 009 01 010 011 012 013 ... 988 989 99 990 991 992 993 994 995 996 997 998 999
 
@@ -84,6 +86,8 @@ It's a guided version to generate your customized wordlist. You can chose, step 
 - Some or all characters of the alphabet.
 - Some or all numbers.
 - Some or all special characters.
+
+Then, as for the other methods, you choose the min and the max size of the strings that will be generated.
 
 ### Dictionary wordlist
 

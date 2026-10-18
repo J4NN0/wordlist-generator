@@ -29,7 +29,7 @@
 static unsigned long long count=0;
 
 /* Arrangements engine, shared by Alphabet [1], Numbers [2], Str [3], Guided [4] and File [5] */
-static void arrangements(FILE *fp_out, int pos, char **tok, int *sol, int *mark, int n_tok, int max_len, unsigned long long tot);
+static void arrangements(FILE *fp_out, int pos, char **tok, int *sol, int *mark, int n_tok, int min_len, int max_len, unsigned long long tot);
 static void print_sol(FILE *fp_out, const int *sol, char **tok, int dim);
 /* Dictionary [6] */
 static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, unsigned long long tot);
@@ -38,7 +38,7 @@ static void create_dic(FILE *fp_out, int start, char *str, char *sol, int n, uns
 void wl_alphabet() {
     FILE *fp=NULL;
     char *v=NULL, **tok=NULL, oper=' ';
-    int *sol=NULL, size=0, dim=0;
+    int *sol=NULL, min_size=0, max_size=0, dim=0;
     unsigned long long tot;
 
     explication();
@@ -71,14 +71,14 @@ void wl_alphabet() {
         }
     }
 
-    sol = manage_size(&size, sol);
+    sol = manage_size(&min_size, &max_size, sol);
     fp = manage_file();
     tok = chars_to_tokens(v, dim);
 
-    tot = tot_arrangements_rep(size, dim);
-    arrangements(fp, 0, tok, sol, NULL, dim, size, tot);
+    tot = tot_arrangements_rep(min_size, max_size, dim);
+    arrangements(fp, 0, tok, sol, NULL, dim, min_size, max_size, tot);
 
-    end(size);
+    end(min_size, max_size);
     count = 0;
 
     fclose(fp);
@@ -91,20 +91,20 @@ void wl_alphabet() {
 void wl_numbers() {
     FILE *fp=NULL;
     char **tok=NULL;
-    int *sol=NULL, size=0;
+    int *sol=NULL, min_size=0, max_size=0;
     unsigned long long tot;
 
     explication();
     fflush(stdin);
 
-    sol = manage_size(&size, sol);
+    sol = manage_size(&min_size, &max_size, sol);
     fp = manage_file();
     tok = chars_to_tokens("0123456789", N);
 
-    tot = tot_arrangements_rep(size, N);
-    arrangements(fp, 0, tok, sol, NULL, N, size, tot);
+    tot = tot_arrangements_rep(min_size, max_size, N);
+    arrangements(fp, 0, tok, sol, NULL, N, min_size, max_size, tot);
 
-    end(size);
+    end(min_size, max_size);
     count = 0;
 
     fclose(fp);
@@ -158,7 +158,7 @@ void wl_str() {
 
     tot = tot_arrangements(dim * n_rip, dim * n_rip);
 
-    arrangements(fp, 0, str, sol, mark, dim, dim * n_rip, tot);
+    arrangements(fp, 0, str, sol, mark, dim, 1, dim * n_rip, tot);
     fprintf(stdout, "\nAll the possible strings generated!\n");
     count=0;
     fprintf(stdout, "Use it wisely!\n");
@@ -181,7 +181,7 @@ void wl_guided() {
     FILE *fp=NULL;
     char *v=NULL, **tok=NULL;
     char oper=' ';
-    int *sol=NULL, size=0, dim=0;
+    int *sol=NULL, min_size=0, max_size=0, dim=0;
     unsigned long long tot;
 
     explication();
@@ -243,16 +243,16 @@ void wl_guided() {
         }
     }
 
-    sol = manage_size(&size, sol);
+    sol = manage_size(&min_size, &max_size, sol);
 
     fp = manage_file();
 
     tok = chars_to_tokens(v, dim);
 
-    tot = tot_arrangements_rep(size, dim);
-    arrangements(fp, 0, tok, sol, NULL, dim, size, tot);
+    tot = tot_arrangements_rep(min_size, max_size, dim);
+    arrangements(fp, 0, tok, sol, NULL, dim, min_size, max_size, tot);
 
-    end(size);
+    end(min_size, max_size);
     count = 0;
 
     fclose(fp);
@@ -265,6 +265,7 @@ void wl_guided() {
 void wl_dictionary() {
     FILE *fp=NULL;
     char str[S], *sol=NULL;
+    int len;
     unsigned long long tot;
 
     explication();
@@ -282,9 +283,10 @@ void wl_dictionary() {
     }
     strcpy(sol, str);
 
-    create_dic(fp, 0, str, sol, strlen(str), tot);
+    len = (int)strlen(str);
+    create_dic(fp, 0, str, sol, len, tot);
 
-    end(strlen(str));
+    end(len, len);
     count = 0;
 
     fclose(fp);
@@ -390,7 +392,7 @@ void wl_file() {
 
     tot = tot_arrangements(dim_file, dim_file);
     fp = manage_file();
-    arrangements(fp, 0, matr, sol, mark, dim_file, dim_file, tot);
+    arrangements(fp, 0, matr, sol, mark, dim_file, 1, dim_file, tot);
     fprintf(stdout, "\nAll the possible strings generated!\n");
     count=0;
     fprintf(stdout, "Use it wisely!\n");
@@ -408,7 +410,9 @@ void wl_file() {
     clear();
 }
 
-static void arrangements(FILE *fp_out, int pos, char **tok, int *sol, int *mark, int n_tok, int max_len, unsigned long long tot) {
+// Shorter prefixes are still walked through (they are the root of the longer
+// strings) but only the ones reaching min_len are written to the wordlist.
+static void arrangements(FILE *fp_out, int pos, char **tok, int *sol, int *mark, int n_tok, int min_len, int max_len, unsigned long long tot) {
     int i;
 
     if(pos >= max_len) {
@@ -424,9 +428,11 @@ static void arrangements(FILE *fp_out, int pos, char **tok, int *sol, int *mark,
         }
 
         sol[pos] = i;
-        print_sol(fp_out, sol, tok, pos + 1);
-        print_count(++count, tot);
-        arrangements(fp_out, pos + 1, tok, sol, mark, n_tok, max_len, tot);
+        if(pos + 1 >= min_len){
+            print_sol(fp_out, sol, tok, pos + 1);
+            print_count(++count, tot);
+        }
+        arrangements(fp_out, pos + 1, tok, sol, mark, n_tok, min_len, max_len, tot);
 
         if(mark != NULL) {
             mark[i]++;

@@ -39,7 +39,7 @@ char *init_alphabet_lowercase(char *v); //_[5]
 char *init_alphabet_uppercase_and_lowercase(char *v); //_[5]
 
 /// Alphabet and Numbers [1 & 2]:
-int *manage_size(int *size, int *sol);
+int *manage_size(int *min_size, int *max_size, int *sol);
 
 /// Str (Strings and Numbers) [3]
 char **init_str(char **str, int *dim);
@@ -65,8 +65,8 @@ void free_char_tokens(char **tok);
 void explication();
 FILE *manage_file();
 void print_count(unsigned long long count, unsigned long long tot);
-void end(int size);
+void end(int min_size, int max_size);
 WL_NORETURN void err_pointer(int err);
 // Combinatorics
-unsigned long long tot_arrangements_rep(int size, int base);
+unsigned long long tot_arrangements_rep(int min_size, int max_size, int base);
 unsigned long long tot_arrangements(int n, int k);

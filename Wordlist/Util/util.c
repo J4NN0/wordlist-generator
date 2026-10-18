@@ -30,6 +30,9 @@ static void sig_hand(int signo);
 /* Alphabet [1] */
 static char *init_alphabet(char *v, int upper, int lower);
 
+/* Alphabet and Numbers [1 & 2] */
+static int read_size(const char *question);
+
 /* Guided [4] */
 static int control_saved(char *saved, int dim_saved, int pos, char ch);
 static char *bubble_sort(char *v, int dim);
@@ -75,21 +78,32 @@ char *init_alphabet_uppercase_and_lowercase(char *v) {
 }
 
 /// Alphabet and Numbers [1 & 2]:
-int *manage_size(int *size, int *sol) {
-    int ok=0;
-    char tmp_size_char;
+static int read_size(const char *question) {
+    char tmp_size_char=' ';
 
-    while(!ok){
-        fprintf(stdout, "\nEnter maximum size string to generate: ");
+    while(!isdigit(tmp_size_char) || tmp_size_char=='0'){
+        fprintf(stdout, "\n%s", question);
         fscanf(stdin, " %c", &tmp_size_char);
         fflush(stdin);
-        if(isdigit(tmp_size_char)) {
-            ok=1;
+        if(!isdigit(tmp_size_char) || tmp_size_char=='0') {
+            fprintf(stdout, "Enter a single digit from 1 to 9.\n");
         }
     }
 
-    (*size) = tmp_size_char - '0';
-    sol = malloc((*size)*sizeof(int));
+    return tmp_size_char - '0';
+}
+
+int *manage_size(int *min_size, int *max_size, int *sol) {
+    (*min_size) = read_size("Enter minimum size string to generate: ");
+
+    do {
+        (*max_size) = read_size("Enter maximum size string to generate: ");
+        if((*max_size) < (*min_size)) {
+            fprintf(stdout, "The maximum size can't be smaller than the minimum one (%d).\n", (*min_size));
+        }
+    } while((*max_size) < (*min_size));
+
+    sol = malloc((*max_size)*sizeof(int));
     if(sol == NULL) {
         err_pointer(-2);
     }
@@ -680,8 +694,13 @@ void print_count(unsigned long long count, unsigned long long tot) {
     fprintf(stdout, "Wait: %llu to %llu\r", count, tot);
 }
 
-void end(int size) {
-    fprintf(stdout, "\nAll the possible strings of size %d generated!\n", size);
+void end(int min_size, int max_size) {
+    if(min_size == max_size) {
+        fprintf(stdout, "\nAll the possible strings of size %d generated!\n", max_size);
+    }
+    else {
+        fprintf(stdout, "\nAll the possible strings of size from %d to %d generated!\n", min_size, max_size);
+    }
     fprintf(stdout, "Use it wisely!\n\n");
 
     pause();
@@ -693,15 +712,18 @@ void end(int size) {
 
 // Combinatorics
 // Both return ULLONG_MAX if the total doesn't fit
-// base^1 + base^2 + ... + base^size
-unsigned long long tot_arrangements_rep(int size, int base) {
+// base^min_size + base^(min_size+1) + ... + base^max_size
+unsigned long long tot_arrangements_rep(int min_size, int max_size, int base) {
     unsigned long long tot=0, tmp=1;
 
-    for(int i=1; i<=size; i++){
+    for(int i=1; i<=max_size; i++){
         if(base != 0 && tmp > ULLONG_MAX/base) {
             return ULLONG_MAX;
         }
         tmp *= base;
+        if(i < min_size) {
+            continue;
+        }
         if(tot > ULLONG_MAX-tmp) {
             return ULLONG_MAX;
         }
